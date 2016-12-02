@@ -35,11 +35,11 @@ import theano.tensor as T
 from theano.tensor.signal import pool
 from theano.tensor.nnet import conv2d
 
-from project_nn import LogisticRegression, load_data, HiddenLayer, HighwayLayer, MyMLP, train_nn
+from project_nn import LogisticRegression, load_data, HiddenLayer, HighwayLayer, myMLP, train_nn, RMSprop, Momentum
 
 
 def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_layers=1,
-                    dataset='mnist.pkl.gz', batch_size=500):
+                    dataset='mnist.pkl.gz', batch_size=500,verbose=False):
     """ Demonstrates lenet on MNIST dataset
 
     :type learning_rate: float
@@ -87,7 +87,7 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_layers=1,
     # BUILD ACTUAL MODEL #
     ######################
     
-    mlp_net = MyMlP(
+    mlp_net = myMLP(
         rng=rng, 
         input=x,
         n_in=n_in, 
@@ -129,16 +129,18 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_layers=1,
 
     # compute the gradient of cost with respect to theta (sotred in params)
     # the resulting gradients will be stored in a list gparams
-    gparams = [T.grad(cost, param) for param in mlp_net.params]
+    #gparams = [T.grad(cost, param) for param in mlp_net.params]
 
     # specify how to update the parameters of the model as a list of
     # (variable, update expression) pairs
 
-    updates = [
-        (param, param - learning_rate * gparam)
-        for param, gparam in zip(mlp_net.params, gparams)
-    ]
-
+    #updates = [
+    #    (param, param - learning_rate * gparam)
+    #    for param, gparam in zip(mlp_net.params, gparams)
+    #]
+    #updates = RMSprop(cost,mlp_net.params)
+    updates = Momentum(cost, mlp_net.params, eps = learning_rate,alpha = 0.9)
+    
     # compiling a Theano function `train_model` that returns the cost, but
     # in the same time updates the parameter of the model based on the rules
     # defined in `updates`

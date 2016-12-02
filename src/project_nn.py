@@ -21,9 +21,9 @@ from collections import OrderedDict
 import theano
 import theano.tensor as T
 from theano.tensor.nnet import conv2d
+import gzip
+import pickle
 from theano.tensor.signal import downsample
-
-from hw4_utils import contextwin
 
 class LogisticRegression(object):
     """Multi-class Logistic Regression Class
@@ -242,7 +242,7 @@ class HighwayLayer(object):
             W_T = theano.shared(value=W_T_values, name='W', borrow=True)
 
         if b_T is None:
-            b_T_values = numpy.asarray(rng.uniform(low=-10,high=-1,size=(n_out,),dtype=theano.config.floatX)
+            b_T_values = numpy.asarray(rng.uniform(low=-10,high=-1,size=(n_out,)),dtype=theano.config.floatX)
             b_T = theano.shared(value=b_T_values, name='b', borrow=True)
         
         self.W_H = W_H
@@ -377,7 +377,7 @@ class myMLP(object):
         # The logistic regression layer gets as input the hidden units
         # of the hidden layer
         self.logRegressionLayer = LogisticRegression(
-            input=self.hiddenLayers[n_hiddenLayers].output,
+            input=self.hiddenLayers[-1].output,
             n_in= n_hidden[n_hiddenLayers-1], #n_hidden[-1],
             n_out=n_out
         )
@@ -699,7 +699,7 @@ def RMSprop(cost, params, lr=0.01, rho=0.5, epsilon=1e-6):
         #print(p.eval())
     return updates
 
-def Momentum(cost, params, lr = 0.01,alpha = 0.9):
+def Momentum(cost, params, eps = 0.01,alpha = 0.9):
     grads = T.grad(cost=cost,wrt=params)
     updates = []
     v = [theano.shared(numpy.zeros(param_i.shape.eval(), dtype=theano.config.floatX),borrow=True) for param_i in params]
