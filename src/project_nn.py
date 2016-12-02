@@ -231,8 +231,8 @@ class HighwayLayer(object):
         if b_H is None:
             b_H_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
             b_H = theano.shared(value=b_H_values, name='b', borrow=True)
-	
-	if W_T is None:
+    
+        if W_T is None:
             W_T_values = numpy.asarray(rng.uniform(
                     low=-numpy.sqrt(6. / (n_in + n_out)),
                     high=numpy.sqrt(6. / (n_in + n_out)),
@@ -245,24 +245,24 @@ class HighwayLayer(object):
             b_T_values = numpy.asarray(rng.uniform(low=-10,high=-1,size=(n_out,),dtype=theano.config.floatX)
             b_T = theano.shared(value=b_T_values, name='b', borrow=True)
         
-	self.W_H = W_H
+        self.W_H = W_H
         self.b_H = b_H
-	self.W_T = W_T
-	self.b_T = b_T
+        self.W_T = W_T
+        self.b_T = b_T
 
         H_part = T.dot(input, self.W_H) + self.b_H
-	T_part = T.dot(input, self.W_T) + self.b_T
-	
-	one = numpy.ones(n_in,dtype=theano.config.floatX)
-	self.output = activation_H(H_part)*activation_T(T_part) + input*(one-activation_T(T_part))
+        T_part = T.dot(input, self.W_T) + self.b_T
+    
+        one = numpy.ones(n_in,dtype=theano.config.floatX)
+        self.output = activation_H(H_part)*activation_T(T_part) + input*(one-activation_T(T_part))
         # parameters of the model
-        self.params = [self.W_H, self.W_T, self.b_H, self.B_T]
+        self.params = [self.W_H, self.W_T, self.b_H, self.b_T]
 
 class HighwayNetwork(object):
     def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, n_highwayLayers, activation_hidden, activation_highway, training_enabled):
-	self.input = input
+        self.input = input
 
-	if hasattr(n_hidden, '__iter__'):
+        if hasattr(n_hidden, '__iter__'):
             assert(len(n_hidden) == n_hiddenLayers)
         else:
             n_hidden = (n_hidden,)*n_hiddenLayers
@@ -282,21 +282,21 @@ class HighwayNetwork(object):
                     n_in=h_in,
                     n_out=n_hidden[i],
                     activation=activation_hidden
+                    ))
+
+        h_in = n_in if n_hiddenLayer == 0 else n_hidden[-1]
+
+        for i in (xrange(n_highwayLayers)+n_hiddenLayers):
+            h_input = input if n_hiddenLayers==0 else self.allLayers[i-1].output
+            self.allLayers.append(
+            HighwayLayer(
+                rng=rng, 
+                input = h_input,
+                n_in = h_in,
+                n_out = h_in
             ))
 
-	h_in = n_in if n_hiddenLayer == 0 else n_hidden[-1]
-
-	for i in (xrange(n_highwayLayers)+n_hiddenLayers):
-	    h_input = input if n_hiddenLayers==0 else self.allLayers[i-1].output
-	    self.allLayers.append(
-		HighwayLayer(
-			rng=rng, 
-			input = h_input,
-			n_in = h_in,
-			n_out = h_in
-		))
-
-	self.logRegressionLayer = LogisticRegression(
+        self.logRegressionLayer = LogisticRegression(
             input=self.allLayers[n_hiddenLayers+n_highwayLayers].output,
             n_in= h_in, #n_hidden[-1],
             n_out=n_out
@@ -309,7 +309,8 @@ class HighwayNetwork(object):
         self.errors = self.logRegressionLayer.errors
 
         self.params = sum([x.params for x in self.allLayers], []) + self.logRegressionLayer.params
-
+                                       
+        self.input = input
 
 class myMLP(object):
     """Multi-Layefr Perceptron Class
@@ -321,7 +322,7 @@ class myMLP(object):
     class).
     """
 
-    def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, activation,training_enabled):
+    def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, activation):
         """Initialize the parameters for the multilayer perceptron
 
         :type rng: numpy.random.RandomState
