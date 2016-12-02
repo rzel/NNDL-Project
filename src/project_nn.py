@@ -214,6 +214,103 @@ class HiddenLayer(object):
         # parameters of the model
         self.params = [self.W, self.b]
 
+class HighwayLayer(object):
+    def __init__(self, rng, input, n_in, n_out, W_H=None, b_H=None, W_T =None, b_T = None,
+                 activation_H=T.tanh, activation_T = T.nnet.nnet.sigmoid):
+        self.input = input
+
+        if W_H is None:
+            W_H_values = numpy.asarray(rng.uniform(
+                    low=-numpy.sqrt(6. / (n_in + n_out)),
+                    high=numpy.sqrt(6. / (n_in + n_out)),
+                    size=(n_in, n_out)),dtype=theano.config.floatX)
+            if activation_H == theano.tensor.nnet.sigmoid:
+                W_H_values *= 4
+            W_H = theano.shared(value=W_H_values, name='W', borrow=True)
+
+        if b_H is None:
+            b_H_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
+            b_H = theano.shared(value=b_H_values, name='b', borrow=True)
+	
+	if W_T is None:
+            W_T_values = numpy.asarray(rng.uniform(
+                    low=-numpy.sqrt(6. / (n_in + n_out)),
+                    high=numpy.sqrt(6. / (n_in + n_out)),
+                    size=(n_in, n_out)),dtype=theano.config.floatX)
+            if activation_T == theano.tensor.nnet.sigmoid:
+                W_T_values *= 4
+            W_T = theano.shared(value=W_T_values, name='W', borrow=True)
+
+        if b_T is None:
+            b_T_values = numpy.asarray(rng.uniform(low=-10,high=-1,size=(n_out,),dtype=theano.config.floatX)
+            b_T = theano.shared(value=b_T_values, name='b', borrow=True)
+        
+	self.W_H = W_H
+        self.b_H = b_H
+	self.W_T = W_T
+	self.b_T = b_T
+
+        H_part = T.dot(input, self.W_H) + self.b_H
+	T_part = T.dot(input, self.W_T) + self.b_T
+	
+	one = numpy.ones(n_in,dtype=theano.config.floatX)
+	self.output = activation_H(H_part)*activation_T(T_part) + input*(one-activation_T(T_part))
+        # parameters of the model
+        self.params = [self.W_H, self.W_T, self.b_H, self.B_T]
+
+class HighwayNetwork(object):
+    def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, n_highwayLayers, activation_hidden, activation_highway, training_enabled):
+	self.input = input
+
+	if hasattr(n_hidden, '__iter__'):
+            assert(len(n_hidden) == n_hiddenLayers)
+        else:
+            n_hidden = (n_hidden,)*n_hiddenLayers
+
+        # Since we are dealing with a one hidden layer MLP, this will translate
+        # into a HiddenLayer with a tanh activation function connected to the
+        # LogisticRegression layer; the activation function can be replaced by
+        # sigmoid or any other nonlinear function.
+        self.allLayers = []
+        for i in xrange(n_hiddenLayers):
+            h_input = input if i == 0 else self.hiddenLayers[i-1].output
+            h_in = n_in if i == 0 else n_hidden[i-1]
+            self.allLayers.append(
+                HiddenLayer(
+                    rng=rng,
+                    input=h_input,
+                    n_in=h_in,
+                    n_out=n_hidden[i],
+                    activation=activation_hidden
+            ))
+
+	h_in = n_in if n_hiddenLayer == 0 else n_hidden[-1]
+
+	for i in (xrange(n_highwayLayers)+n_hiddenLayers):
+	    h_input = input if n_hiddenLayers==0 else self.allLayers[i-1].output
+	    self.allLayers.append(
+		HighwayLayer(
+			rng=rng, 
+			input = h_input,
+			n_in = h_in,
+			n_out = h_in
+		))
+
+	self.logRegressionLayer = LogisticRegression(
+            input=self.allLayers[n_hiddenLayers+n_highwayLayers].output,
+            n_in= h_in, #n_hidden[-1],
+            n_out=n_out
+        )
+
+        self.negative_log_likelihood = (
+            self.logRegressionLayer.negative_log_likelihood
+        )
+
+        self.errors = self.logRegressionLayer.errors
+
+        self.params = sum([x.params for x in self.allLayers], []) + self.logRegressionLayer.params
+
+
 class myMLP(object):
     """Multi-Layefr Perceptron Class
     A multilayer perceptron is a feedforward artificial neural network model
@@ -275,18 +372,7 @@ class myMLP(object):
                     n_out=n_hidden[i],
                     activation=activation
             ))
-        h_input = input if n_hiddenLayers==0 else self.hiddenLayers[n_hiddenLayers-1].output
-        h_in = n_in if n_hiddenLayers==0 else n_hidden[n_hiddenLayers-1]
-        self.hiddenLayers.append(
-                DropoutHiddenLayer(
-                    rng,
-                    is_train = training_enabled,
-                    input = h_input,
-                    n_in = h_in,
-                    n_out = h_in,
-                    p = 0.5,
-                    activation = activation
-                ))
+
         # The logistic regression layer gets as input the hidden units
         # of the hidden layer
         self.logRegressionLayer = LogisticRegression(
