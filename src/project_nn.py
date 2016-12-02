@@ -541,5 +541,15 @@ def RMSprop(cost, params, lr=0.01, rho=0.5, epsilon=1e-6):
         #print(p.eval())
     return updates
 
+def Momentum(cost, params, lr = 0.01,alpha = 0.9):
+    grads = T.grad(cost=cost,wrt=params)
+    updates = []
+    v = [theano.shared(numpy.zeros(param_i.shape.eval(), dtype=theano.config.floatX),borrow=True) for param_i in params]
+    for param_i, grad_i, v_i in zip(params, grads, v):
+        v_next = alpha*v_i - eps*grad_i
+        updates.append((v_i, v_next))
+        updates.append((param_i, param_i + v_next))
+    return updates
+
     
 
