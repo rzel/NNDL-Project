@@ -1,6 +1,4 @@
 """
-Source Code for Homework 4 of ECBM E4040, Fall 2016, Columbia University
-
 This code contains implementation of some basic components in neural network.
 
 This code is based on
@@ -298,7 +296,8 @@ class HighwayNetwork(object):
                 input = h_input,
                 n_in = h_in,
                 n_out = h_in, 
-                b_T = b_T
+                b_T = b_T,
+                activation_H = activation_highway,
             ))
 
         self.logRegressionLayer = LogisticRegression(
