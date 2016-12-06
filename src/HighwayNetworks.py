@@ -38,9 +38,10 @@ from theano.tensor.nnet import conv2d
 from project_nn import LogisticRegression, load_data, HiddenLayer, HighwayLayer, myMLP, train_nn, RMSprop, Momentum,HighwayNetwork
 
 
-def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1, n_highwayLayers = 5, 
-                 activation_hidden = T.nnet.nnet.relu, activation_highway = T.nnet.nnet.sigmoid,
+def test_Highway(learning_rate=0.1, rho = 0.9, n_epochs=200, n_hidden=10, n_hiddenLayers=1, n_highwayLayers = 5, 
+                 activation_hidden = T.nnet.nnet.relu, activation_highway = T.nnet.nnet.sigmoid, b_T = -5, L1_reg = 0, L2_reg = 0,
                  dataset='mnist.pkl.gz', batch_size=500,verbose=False):
+    
     
     """ Demonstrates lenet on MNIST dataset
 
@@ -89,7 +90,7 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
     # BUILD ACTUAL MODEL #
     ######################
     
-    mlp_net = HighwayNetwork(
+    highway_net = HighwayNetwork(
         rng=rng, 
         input=x,
         n_in=n_in, 
@@ -98,7 +99,8 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
         n_hiddenLayers=n_hiddenLayers, 
         n_highwayLayers = n_highwayLayers,
         activation_hidden = activation_hidden,
-        activation_highway = activation_highway
+        activation_highway = activation_highway,
+        b_T = b_T
     )
     
     print('... building the model')
@@ -106,7 +108,7 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
     # the cost we minimize during training is the negative log likelihood of
     # the model plus the regularization terms (L1 and L2); cost is expressed
     # here symbolically
-    cost = ( mlp_net.logRegressionLayer.negative_log_likelihood(y)
+    cost = ( highway_net.logRegressionLayer.negative_log_likelihood(y)
         #+ L1_reg * L1
         #+ L2_reg * L2_sqr
     )
@@ -115,7 +117,7 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
     # by the model on a minibatch    
     test_model = theano.function(
         inputs=[index],
-        outputs=mlp_net.logRegressionLayer.errors(y),
+        outputs=highway_net.logRegressionLayer.errors(y),
         givens={
             x: test_set_x[index * batch_size:(index + 1) * batch_size],
             y: test_set_y[index * batch_size:(index + 1) * batch_size]
@@ -124,7 +126,7 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
 
     validate_model = theano.function(
         inputs=[index],
-        outputs=mlp_net.logRegressionLayer.errors(y),
+        outputs=highway_net.logRegressionLayer.errors(y),
         givens={
             x: valid_set_x[index * batch_size:(index + 1) * batch_size],
             y: valid_set_y[index * batch_size:(index + 1) * batch_size]
@@ -142,7 +144,7 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
     #    (param, param - learning_rate * gparam)
     #    for param, gparam in zip(mlp_net.params, gparams)
     #]
-    updates = RMSprop(cost,mlp_net.params)
+    updates = RMSprop(cost,highway_net.params,lr = learning_rate, rho = rho)
     #updates = Momentum(cost, mlp_net.params, eps = learning_rate,alpha = 0.9)
     
     # compiling a Theano function `train_model` that returns the cost, but
@@ -158,5 +160,11 @@ def test_Highway(learning_rate=0.1, n_epochs=200, n_hidden=10, n_hiddenLayers=1,
         }
     )
     
-    train_nn(train_model, validate_model, test_model,
-            n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose)
+    #train_nn(train_model, validate_model, test_model,
+    #        n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose)
+    
+    train_nn(train_model, validate_model, test_model, n_hidden = n_hidden, n_hiddenLayers = n_hiddenLayers,
+             n_highwayLayers = n_highwayLayers, lr = learning_rate,rho=rho,activation_hd = activation_hidden,
+             activation_hw = activation_highway, batch_size = batch_size, n_train_batches = n_train_batches,
+             n_valid_batches = n_valid_batches, n_test_batches=n_test_batches, n_epochs = n_epochs, L1_reg = L1_reg,
+             L2_reg = L2_reg, verbose =verbose)

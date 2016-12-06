@@ -1,0 +1,1 @@
+Running time,XEntropy,Test performance,Best Validation score,Max epochs,N epochs,Activation function - hidden,Activation function - highway,L2_reg parameter,L1_reg parameter,Batch size,Iterations,Hidden neurons per layer,Hidden Layers,Highway Layers,Leaning rate,Rho,Patience    

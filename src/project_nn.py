@@ -16,6 +16,7 @@ import timeit
 import inspect
 import sys
 import numpy
+import pandas as pd
 from collections import OrderedDict
 
 import theano
@@ -226,11 +227,11 @@ class HighwayLayer(object):
                     size=(n_in, n_out)),dtype=theano.config.floatX)
             if activation_H == theano.tensor.nnet.sigmoid:
                 W_H_values *= 4
-            W_H = theano.shared(value=W_H_values, name='W', borrow=True)
+            W_H = theano.shared(value=W_H_values, name='W_H', borrow=True)
 
         if b_H is None:
             b_H_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
-            b_H = theano.shared(value=b_H_values, name='b', borrow=True)
+            b_H = theano.shared(value=b_H_values, name='b_H', borrow=True)
     
         if W_T is None:
             W_T_values = numpy.asarray(rng.uniform(
@@ -239,11 +240,14 @@ class HighwayLayer(object):
                     size=(n_in, n_out)),dtype=theano.config.floatX)
             if activation_T == theano.tensor.nnet.sigmoid:
                 W_T_values *= 4
-            W_T = theano.shared(value=W_T_values, name='W', borrow=True)
+            W_T = theano.shared(value=W_T_values, name='W_T', borrow=True)
 
         if b_T is None:
             b_T_values = numpy.asarray(rng.uniform(low=-10,high=-1,size=(n_out,)),dtype=theano.config.floatX)
-            b_T = theano.shared(value=b_T_values, name='b', borrow=True)
+            b_T = theano.shared(value=b_T_values, name='b_T', borrow=True)
+        else:
+            b_T_values = numpy.asarray(b_T*numpy.ones(shape=(n_out,)),dtype=theano.config.floatX)
+            b_T = theano.shared(value=b_T_values,name='b_T',borrow=True)
         
         self.W_H = W_H
         self.b_H = b_H
@@ -259,7 +263,7 @@ class HighwayLayer(object):
         self.params = [self.W_H, self.W_T, self.b_H, self.b_T]
 
 class HighwayNetwork(object):
-    def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, n_highwayLayers, activation_hidden, activation_highway):#, training_enabled):
+    def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, n_highwayLayers, activation_hidden, activation_highway, b_T):#, training_enabled):
         self.input = input
 
         if hasattr(n_hidden, '__iter__'):
@@ -293,7 +297,8 @@ class HighwayNetwork(object):
                 rng=rng, 
                 input = h_input,
                 n_in = h_in,
-                n_out = h_in
+                n_out = h_in, 
+                b_T = b_T
             ))
 
         self.logRegressionLayer = LogisticRegression(
@@ -493,8 +498,8 @@ class DropoutHiddenLayer(object):
 
 
 
-def train_nn(train_model, validate_model, test_model,
-            n_train_batches, n_valid_batches, n_test_batches, n_epochs,
+def train_nn(train_model, validate_model, test_model, n_hidden, n_hiddenLayers, n_highwayLayers, lr, rho, activation_hd, activation_hw, batch_size,
+            n_train_batches, n_valid_batches, n_test_batches, n_epochs, L1_reg = 0, L2_reg = 0,
             verbose = True):
     """
     Wrapper function for training and test THEANO model
@@ -545,8 +550,11 @@ def train_nn(train_model, validate_model, test_model,
     epoch = 0
     done_looping = False
 
+    cross_entropy = {}
+    
     while (epoch < n_epochs) and (not done_looping):
         epoch = epoch + 1
+        epoch_cross_entropy = 0
         for minibatch_index in range(n_train_batches):
 
             iter = (epoch - 1) * n_train_batches + minibatch_index
@@ -554,7 +562,12 @@ def train_nn(train_model, validate_model, test_model,
             #if (iter % 100 == 0) and verbose:
             #    print('training @ iter = ', iter)
             cost_ij = train_model(minibatch_index)
-
+            
+            epoch_cross_entropy = epoch_cross_entropy + cost_ij
+            
+            #cross_entropy[(epoch,minibatch_index)] = cost_ij
+            
+            
             if (iter + 1) % validation_frequency == 0:
 
                 # compute zero-one loss on validation set
@@ -597,13 +610,15 @@ def train_nn(train_model, validate_model, test_model,
             if patience <= iter:
                 done_looping = True
                 break
-
+                
+        cross_entropy[epoch] = epoch_cross_entropy/n_train_batches
+        
     end_time = timeit.default_timer()
 
     # Retrieve the name of function who invokes train_nn() (caller's name)
     curframe = inspect.currentframe()
     calframe = inspect.getouterframes(curframe, 2)
-
+    
     # Print out summary
     print('Optimization complete.')
     print('Best validation score of %f %% obtained at iteration %i, '
@@ -612,6 +627,21 @@ def train_nn(train_model, validate_model, test_model,
     print(('The training process for function ' +
            calframe[1][3] +
            ' ran for %.2fm' % ((end_time - start_time) / 60.)), file=sys.stderr)
+    
+    res =  pd.DataFrame([(end_time - start_time) / 60.,epoch_cross_entropy/n_train_batches, test_score * 100.,
+                         best_validation_loss * 100., n_epochs, epoch,
+                         activation_hd, activation_hw, L2_reg, L1_reg,
+                         batch_size, best_iter + 1, n_hidden, n_hiddenLayers, n_highwayLayers, lr,rho,patience],                         
+                        index=['Running time','XEntropy','Test performance','Best Validation score',
+                                 'Max epochs','N epochs','Activation function - hidden', 'Activation function - highway','L2_reg parameter',
+                                 'L1_reg parameter','Batch size','Iterations',
+                                 'Hidden neurons per layer', 'Hidden Layers', 'Highway Layers', 'Learning rate', 'Rho','Patience']).transpose()
+    
+    res.to_csv('Results.csv',mode='a',index=None,header=False)
+    idx = pd.read_csv('Results.csv').index.values[-1]
+    
+    pickle.dump(cross_entropy,open("cross_entropy"+str(idx)+".p","wb"))
+
 
 def load_data(dataset):
     ''' Loads the dataset
