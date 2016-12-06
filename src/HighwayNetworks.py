@@ -38,30 +38,11 @@ from theano.tensor.nnet import conv2d
 from project_nn import LogisticRegression, load_data, HiddenLayer, HighwayLayer, myMLP, train_nn, RMSprop, Momentum,HighwayNetwork
 
 
-def test_Highway(learning_rate=0.1, rho = 0.9, n_epochs=200, n_hidden=10, n_hiddenLayers=1, n_highwayLayers = 5, 
-                 activation_hidden = T.nnet.nnet.relu, activation_highway = T.nnet.nnet.sigmoid, b_T = -5, L1_reg = 0, L2_reg = 0,
-                 dataset='mnist.pkl.gz', batch_size=500,verbose=False):
+def test_Highway(datasets, learning_rate=0.1, rho = 0.9, n_epochs=200, n_hidden=10, n_hiddenLayers=1, n_highwayLayers = 5, 
+                 activation_hidden = T.nnet.nnet.relu, activation_highway = T.nnet.nnet.sigmoid, b_T = -5, L1_reg = 0,
+                 L2_reg = 0, batch_size=500,verbose=False):
     
-    
-    """ Demonstrates lenet on MNIST dataset
-
-    :type learning_rate: float
-    :param learning_rate: learning rate used (factor for the stochastic
-                          gradient)
-
-    :type n_epochs: int
-    :param n_epochs: maximal number of epochs to run the optimizer
-
-    :type dataset: string
-    :param dataset: path to the dataset used for training /testing (MNIST here)
-
-    :type nkerns: list of ints
-    :param nkerns: number of kernels on each layer
-    """
-
     rng = numpy.random.RandomState(23455)
-
-    datasets = load_data(dataset)
 
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
