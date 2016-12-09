@@ -262,48 +262,45 @@ class HighwayLayer(object):
 
 class HighwayNetwork(object):
     def __init__(self, rng, input, n_in, n_hidden, n_out, n_hiddenLayers, n_highwayLayers, activation_hidden, activation_highway, b_T):#, training_enabled):
-        self.input = input
 
         if hasattr(n_hidden, '__iter__'):
             assert(len(n_hidden) == n_hiddenLayers)
         else:
             n_hidden = (n_hidden,)*n_hiddenLayers
 
-        # Since we are dealing with a one hidden layer MLP, this will translate
-        # into a HiddenLayer with a tanh activation function connected to the
-        # LogisticRegression layer; the activation function can be replaced by
-        # sigmoid or any other nonlinear function.
+        # fully connected layers
         self.allLayers = []
         for i in xrange(n_hiddenLayers):
             h_input = input if i == 0 else self.allLayers[i-1].output
             h_in = n_in if i == 0 else n_hidden[i-1]
             self.allLayers.append(
                 HiddenLayer(
-                    rng=rng,
-                    input=h_input,
-                    n_in=h_in,
-                    n_out=n_hidden[i],
-                    activation=activation_hidden
-                    ))
+                    rng = rng,
+                    input = h_input,
+                    n_in = h_in,
+                    n_out = n_hidden[i],
+                    activation = activation_hidden
+                ))
 
+        # highway layers
         h_in = n_in if n_hiddenLayers == 0 else n_hidden[-1]
-
         for i in range(n_hiddenLayers,n_hiddenLayers+n_highwayLayers):
             h_input = input if n_hiddenLayers==0 else self.allLayers[i-1].output
             self.allLayers.append(
-            HighwayLayer(
-                rng=rng, 
-                input = h_input,
-                n_in = h_in,
-                n_out = h_in, 
-                b_T = b_T,
-                activation_H = activation_highway,
-            ))
+                HighwayLayer(
+                    rng = rng, 
+                    input = h_input,
+                    n_in = h_in,
+                    n_out = h_in, 
+                    b_T = b_T,
+                    activation_H = activation_highway,
+                ))
 
+        # logistic regression layer
         self.logRegressionLayer = LogisticRegression(
-            input=self.allLayers[-1].output,
-            n_in= h_in, #n_hidden[-1],
-            n_out=n_out
+            input = self.allLayers[-1].output,
+            n_in = h_in,
+            n_out = n_out
         )
 
         self.negative_log_likelihood = (
@@ -352,7 +349,6 @@ class myMLP(object):
         :type n_hiddenLayers: int
         :param n_hiddenLayers: number of hidden layers
         """
-        n_hid = n_hidden
         # If n_hidden is a list (or tuple), check its length is equal to the
         # number of hidden layers. If n_hidden is a scalar, we set up every
         # hidden layers with same number of units.
@@ -640,6 +636,7 @@ def train_nn(train_model, validate_model, test_model, n_hidden, n_hiddenLayers, 
     idx = pd.read_csv('Results.csv').index.values[-1]
     
     pickle.dump(cross_entropy,open("cross_entropy"+str(idx)+".p","wb"))
+    print('Cross entropy is stored in cross_entropy'+str(idx)+'.p')
 
 
 def load_data(dataset):
