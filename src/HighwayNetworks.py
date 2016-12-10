@@ -35,7 +35,10 @@ import theano.tensor as T
 from theano.tensor.signal import pool
 from theano.tensor.nnet import conv2d
 
-from project_nn import LogisticRegression, load_data, HiddenLayer, HighwayLayer, myMLP, train_nn, RMSprop, Momentum,HighwayNetwork
+import pandas as pd
+import pickle
+
+from project_nn import LogisticRegression, load_data, HiddenLayer, HighwayLayer, myMLP, HighwayNetwork, train_result, train_nn, RMSprop, Momentum, MomentumWithDecay
 
 
 def test_Highway(datasets, learning_rate=0.1, rho = 0.9, n_epochs=200, n_hidden=10, n_hiddenLayers=1, n_highwayLayers = 5, 
@@ -61,6 +64,7 @@ def test_Highway(datasets, learning_rate=0.1, rho = 0.9, n_epochs=200, n_hidden=
 
     # allocate symbolic variables for the data
     index = T.lscalar()  # index to a [mini]batch
+    itr = T.fscalar()  # index to an iteration
 
     # start-snippet-1
     x = T.matrix('x')   # the data is presented as rasterized images
@@ -114,38 +118,147 @@ def test_Highway(datasets, learning_rate=0.1, rho = 0.9, n_epochs=200, n_hidden=
         }
     )
 
-    # compute the gradient of cost with respect to theta (sotred in params)
-    # the resulting gradients will be stored in a list gparams
-    #gparams = [T.grad(cost, param) for param in mlp_net.params]
-
-    # specify how to update the parameters of the model as a list of
-    # (variable, update expression) pairs
-
-    #updates = [
-    #    (param, param - learning_rate * gparam)
-    #    for param, gparam in zip(mlp_net.params, gparams)
-    #]
     updates = RMSprop(cost,highway_net.params,lr = learning_rate, rho = rho)
-    #updates = Momentum(cost, mlp_net.params, eps = learning_rate,alpha = 0.9)
     
     # compiling a Theano function `train_model` that returns the cost, but
     # in the same time updates the parameter of the model based on the rules
     # defined in `updates`
     train_model = theano.function(
-        inputs=[index],
+        inputs=[index,itr],
         outputs=cost,
         updates=updates,
         givens={
             x: train_set_x[index * batch_size: (index + 1) * batch_size],
             y: train_set_y[index * batch_size: (index + 1) * batch_size]
-        }
+        },
+        on_unused_input='ignore'
+    )
+        
+    result = train_nn(train_model, validate_model, test_model, 
+                      n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose)
+             
+    res =  pd.DataFrame([result.RunningTime, result.BestXEntropy, result.TestPerformance, result.BestValidationScore,
+                         n_epochs, result.N_Epochs, activation_hidden, activation_highway, L2_reg, L1_reg,
+                         batch_size, result.N_Iterations, n_hidden, n_hiddenLayers, n_highwayLayers, learning_rate, rho, result.Patience],                         
+                        index=['Running time','XEntropy','Test performance','Best Validation score',
+                                 'Max epochs','N epochs','Activation function - hidden', 'Activation function - highway','L2_reg parameter',
+                                 'L1_reg parameter','Batch size','Iterations',
+                                 'Hidden neurons per layer', 'Hidden Layers', 'Highway Layers', 'Learning rate', 'Rho','Patience']).transpose()
+    
+    res.to_csv('Results.csv',mode='a',index=None,header=False)
+    idx = pd.read_csv('Results.csv').index.values[-1]
+    
+    pickle.dump(result.XEntropy,open("cross_entropy"+str(idx)+".p","wb"))
+    print('Cross entropy is stored in cross_entropy'+str(idx)+'.p')             
+    
+
+def test_Highway_Momentum(datasets, learning_rate=0.1, lr_decay=0.95, momentum=0.9, n_epochs=200, n_hidden=10, n_hiddenLayers=1, n_highwayLayers = 5, 
+                 activation_hidden = T.nnet.nnet.relu, activation_highway = T.nnet.nnet.sigmoid, b_T = -5, L1_reg = 0,
+                 L2_reg = 0, batch_size=500,verbose=False):
+    
+    rng = numpy.random.RandomState(23455)
+
+    train_set_x, train_set_y = datasets[0]
+    valid_set_x, valid_set_y = datasets[1]
+    test_set_x, test_set_y = datasets[2]
+
+    # compute number of minibatches for training, validation and testing
+    n_train_batches = train_set_x.get_value(borrow=True).shape[0]
+    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0]
+    n_test_batches = test_set_x.get_value(borrow=True).shape[0]
+    
+    n_in = train_set_x.get_value(borrow=True).shape[1]
+    
+    n_train_batches //= batch_size
+    n_valid_batches //= batch_size
+    n_test_batches //= batch_size
+
+    # allocate symbolic variables for the data
+    index = T.lscalar()  # index to a [mini]batch
+    itr = T.fscalar()  # index to an iteration
+
+    # start-snippet-1
+    x = T.matrix('x')   # the data is presented as rasterized images
+    y = T.ivector('y')  # the labels are presented as 1D vector of
+                        # [int] labels
+
+    ######################
+    # BUILD ACTUAL MODEL #
+    ######################
+    
+    highway_net = HighwayNetwork(
+        rng=rng, 
+        input=x,
+        n_in=n_in, 
+        n_hidden=n_hidden, 
+        n_out=10, 
+        n_hiddenLayers=n_hiddenLayers, 
+        n_highwayLayers = n_highwayLayers,
+        activation_hidden = activation_hidden,
+        activation_highway = activation_highway,
+        b_T = b_T
     )
     
-    #train_nn(train_model, validate_model, test_model,
-    #        n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose)
+    print('... building the model')
     
-    train_nn(train_model, validate_model, test_model, n_hidden = n_hidden, n_hiddenLayers = n_hiddenLayers,
-             n_highwayLayers = n_highwayLayers, lr = learning_rate,rho=rho,activation_hd = activation_hidden,
-             activation_hw = activation_highway, batch_size = batch_size, n_train_batches = n_train_batches,
-             n_valid_batches = n_valid_batches, n_test_batches=n_test_batches, n_epochs = n_epochs, L1_reg = L1_reg,
-             L2_reg = L2_reg, verbose =verbose)
+    # the cost we minimize during training is the negative log likelihood of
+    # the model plus the regularization terms (L1 and L2); cost is expressed
+    # here symbolically
+    cost = ( highway_net.logRegressionLayer.negative_log_likelihood(y)
+        #+ L1_reg * L1
+        #+ L2_reg * L2_sqr
+    )
+            
+    # compiling a Theano function that computes the mistakes that are made
+    # by the model on a minibatch    
+    test_model = theano.function(
+        inputs=[index],
+        outputs=highway_net.logRegressionLayer.errors(y),
+        givens={
+            x: test_set_x[index * batch_size:(index + 1) * batch_size],
+            y: test_set_y[index * batch_size:(index + 1) * batch_size]
+        }
+    )
+
+    validate_model = theano.function(
+        inputs=[index],
+        outputs=highway_net.logRegressionLayer.errors(y),
+        givens={
+            x: valid_set_x[index * batch_size:(index + 1) * batch_size],
+            y: valid_set_y[index * batch_size:(index + 1) * batch_size]
+        }
+    )
+
+    updates = MomentumWithDecay(cost, highway_net.params, itr, lr_base=learning_rate, 
+                                lr_decay=lr_decay, momentum=momentum)
+    
+    # compiling a Theano function `train_model` that returns the cost, but
+    # in the same time updates the parameter of the model based on the rules
+    # defined in `updates`
+    train_model = theano.function(
+        inputs=[index,itr],
+        outputs=cost,
+        updates=updates,
+        givens={
+            x: train_set_x[index * batch_size: (index + 1) * batch_size],
+            y: train_set_y[index * batch_size: (index + 1) * batch_size]
+        },
+        on_unused_input='ignore'
+    )
+        
+    result = train_nn(train_model, validate_model, test_model, 
+                      n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose)
+             
+    res =  pd.DataFrame([result.RunningTime, result.BestXEntropy, result.TestPerformance, result.BestValidationScore,
+                         n_epochs, result.N_Epochs, activation_hidden, activation_highway, L2_reg, L1_reg,
+                         batch_size, result.N_Iterations, n_hidden, n_hiddenLayers, n_highwayLayers, learning_rate, lr_decay, momentum, result.Patience],                         
+                        index=['Running time','XEntropy','Test performance','Best Validation score',
+                                 'Max epochs','N epochs','Activation function - hidden', 'Activation function - highway','L2_reg parameter',
+                                 'L1_reg parameter','Batch size','Iterations', 'Hidden neurons per layer', 'Hidden Layers', 'Highway Layers', 
+                                 'Learning rate', 'lr_decay', 'momentum', 'Patience']).transpose()
+    
+    res.to_csv('Results.csv',mode='a',index=None,header=False)
+    idx = pd.read_csv('Results.csv').index.values[-1]
+    
+    pickle.dump(result.XEntropy,open("cross_entropy"+str(idx)+".p","wb"))
+    print('Cross entropy is stored in cross_entropy'+str(idx)+'.p')  

@@ -14,7 +14,6 @@ import timeit
 import inspect
 import sys
 import numpy
-import pandas as pd
 from collections import OrderedDict
 
 import theano
@@ -491,11 +490,23 @@ class DropoutHiddenLayer(object):
         # parameters of the model
         self.params = [self.W, self.b]  
 
+class train_result(object):
+    """Result Class
+    This is a class to store all the training results
+    """
+    def __init__(self, RunningTime, XEntropy, TestPerformance, BestValidationScore, N_Epochs, N_Iterations, Patience):
+        self.RunningTime = RunningTime
+        self.XEntropy = XEntropy
+        self.TestPerformance = TestPerformance
+        self.BestValidationScore = BestValidationScore
+        self.N_Epochs = N_Epochs
+        self.N_Iterations = N_Iterations
+        self.Patience = Patience
+        
+        self.BestXEntropy = XEntropy[N_Epochs]
 
-
-def train_nn(train_model, validate_model, test_model, n_hidden, n_hiddenLayers, n_highwayLayers, lr, rho, activation_hd, activation_hw, batch_size,
-            n_train_batches, n_valid_batches, n_test_batches, n_epochs, L1_reg = 0, L2_reg = 0,
-            verbose = True):
+def train_nn(train_model, validate_model, test_model, 
+            n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose = True):
     """
     Wrapper function for training and test THEANO model
 
@@ -556,7 +567,7 @@ def train_nn(train_model, validate_model, test_model, n_hidden, n_hiddenLayers, 
 
             #if (iter % 100 == 0) and verbose:
             #    print('training @ iter = ', iter)
-            cost_ij = train_model(minibatch_index)
+            cost_ij = train_model(minibatch_index, iter)
             
             epoch_cross_entropy = epoch_cross_entropy + cost_ij
             
@@ -623,21 +634,15 @@ def train_nn(train_model, validate_model, test_model, n_hidden, n_hiddenLayers, 
            calframe[1][3] +
            ' ran for %.2fm' % ((end_time - start_time) / 60.)), file=sys.stderr)
     
-    res =  pd.DataFrame([(end_time - start_time) / 60.,epoch_cross_entropy/n_train_batches, test_score * 100.,
-                         best_validation_loss * 100., n_epochs, epoch,
-                         activation_hd, activation_hw, L2_reg, L1_reg,
-                         batch_size, best_iter + 1, n_hidden, n_hiddenLayers, n_highwayLayers, lr,rho,patience],                         
-                        index=['Running time','XEntropy','Test performance','Best Validation score',
-                                 'Max epochs','N epochs','Activation function - hidden', 'Activation function - highway','L2_reg parameter',
-                                 'L1_reg parameter','Batch size','Iterations',
-                                 'Hidden neurons per layer', 'Hidden Layers', 'Highway Layers', 'Learning rate', 'Rho','Patience']).transpose()
-    
-    res.to_csv('Results.csv',mode='a',index=None,header=False)
-    idx = pd.read_csv('Results.csv').index.values[-1]
-    
-    pickle.dump(cross_entropy,open("cross_entropy"+str(idx)+".p","wb"))
-    print('Cross entropy is stored in cross_entropy'+str(idx)+'.p')
-
+    return train_result(
+            RunningTime = (end_time - start_time) / 60.,
+            XEntropy = cross_entropy,
+            TestPerformance = test_score * 100.,
+            BestValidationScore = best_validation_loss * 100.,
+            N_Epochs = epoch,
+            N_Iterations = best_iter + 1,
+            Patience = patience
+        ) 
 
 def load_data(dataset):
     ''' Loads the dataset
@@ -724,7 +729,7 @@ def RMSprop(cost, params, lr=0.01, rho=0.5, epsilon=1e-6):
         #print(p.eval())
     return updates
 
-def Momentum(cost, params, eps = 0.01,alpha = 0.9):
+def Momentum(cost, params, eps = 0.01, alpha = 0.9):
     grads = T.grad(cost=cost,wrt=params)
     updates = []
     v = [theano.shared(numpy.zeros(param_i.shape.eval(), dtype=theano.config.floatX),borrow=True) for param_i in params]
@@ -733,6 +738,14 @@ def Momentum(cost, params, eps = 0.01,alpha = 0.9):
         updates.append((v_i, v_next))
         updates.append((param_i, param_i + v_next))
     return updates
-
     
-
+def MomentumWithDecay(cost, params, itr, lr_base = 0.01, lr_decay = 1.0, lr_min = 0.00001, momentum = 0.9):
+    grads = T.grad(cost=cost,wrt=params)
+    lr = T.max(lr_base * lr_decay**itr, lr_min)
+    updates = []
+    v = [theano.shared(numpy.zeros(param_i.shape.eval(), dtype=theano.config.floatX),borrow=True) for param_i in params]
+    for param_i, grad_i, v_i in zip(params, grads, v):
+        v_next = momentum*v_i - lr*grad_i
+        updates.append((v_i, v_next))
+        updates.append((param_i, param_i + v_next))
+    return updates
