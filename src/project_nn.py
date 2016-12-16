@@ -14,11 +14,15 @@ import timeit
 import inspect
 import sys
 import numpy
+import scipy.io
+import tarfile
 from collections import OrderedDict
 
 import theano
 import theano.tensor as T
 from theano.tensor.nnet import conv2d
+from theano.tensor.signal import pool
+
 import gzip
 import pickle
 from theano.tensor.signal import downsample
@@ -212,6 +216,173 @@ class HiddenLayer(object):
         # parameters of the model
         self.params = [self.W, self.b]
 
+class ConvLayer(object):
+    """ pure convolutional layer """
+
+    def __init__(self, rng, input, filter_shape, image_shape,
+                 activation=T.tanh):
+        """
+        Allocate a pure convolutional layer with shared variable internal parameters.
+
+        :type rng: numpy.random.RandomState
+        :param rng: a random number generator used to initialize weights
+
+        :type input: theano.tensor.dtensor4
+        :param input: symbolic image tensor, of shape image_shape
+
+        :type filter_shape: tuple or list of length 4
+        :param filter_shape: (number of filters, num input feature maps,
+                              filter height, filter width)
+
+        :type image_shape: tuple or list of length 4
+        :param image_shape: (batch size, num input feature maps,
+                             image height, image width)
+
+        """
+        assert image_shape[1] == filter_shape[1]
+
+        # there are "num input feature maps * filter height * filter width"
+        # inputs to each hidden unit
+        fan_in = numpy.prod(filter_shape[1:])
+        # each unit in the lower layer receives a gradient from:
+        # "num output feature maps * filter height * filter width" 
+        fan_out = (filter_shape[0] * numpy.prod(filter_shape[2:]))
+        # initialize weights with random weights
+        W_bound = numpy.sqrt(6. / (fan_in + fan_out))
+        self.W = theano.shared(
+            numpy.asarray(
+                rng.uniform(low=-W_bound, high=W_bound, size=filter_shape),
+                dtype=theano.config.floatX
+            ),
+            borrow=True
+        )
+
+        # the bias is a 1D tensor -- one bias per output feature map
+        if activation==T.nnet.relu:
+            b_values = numpy.ones((filter_shape[0],), dtype=theano.config.floatX)*0.1            
+        else:
+            b_values = numpy.zeros((filter_shape[0],), dtype=theano.config.floatX)
+        self.b = theano.shared(value=b_values, borrow=True)
+
+        # convolve input feature maps with filters
+        conv_out = conv2d(
+            input=input,
+            filters=self.W,
+            filter_shape=filter_shape,
+            input_shape=image_shape,
+            border_mode='half'
+        )
+
+        # add the bias term. Since the bias is a vector (1D array), we first
+        # reshape it to a tensor of shape (1, n_filters, 1, 1). Each bias will
+        # thus be broadcasted across mini-batches and feature map
+        # width & height
+        self.output = activation(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
+
+        # store parameters of this layer
+        self.params = [self.W, self.b]
+
+        # keep track of model input
+        self.input = input    
+
+class ConvHighwayLayer(object):
+    """ Convolutional highway layer """
+
+    def __init__(self, rng, input, filter_shape, image_shape, b_T=None, activation=T.tanh):
+        """
+        Allocate a convolutional highway layer with shared variable internal parameters.
+
+        :type rng: numpy.random.RandomState
+        :param rng: a random number generator used to initialize weights
+
+        :type input: theano.tensor.dtensor4
+        :param input: symbolic image tensor, of shape image_shape
+
+        :type filter_shape: tuple or list of length 4
+        :param filter_shape: (number of filters, num input feature maps,
+                              filter height, filter width)
+
+        :type image_shape: tuple or list of length 4
+        :param image_shape: (batch size, num input feature maps,
+                             image height, image width)
+
+        """
+        assert image_shape[1] == filter_shape[1]
+
+        # there are "num input feature maps * filter height * filter width"
+        # inputs to each hidden unit
+        fan_in = numpy.prod(filter_shape[1:])
+        # each unit in the lower layer receives a gradient from:
+        # "num output feature maps * filter height * filter width" 
+        fan_out = (filter_shape[0] * numpy.prod(filter_shape[2:]))
+        # initialize weights with random weights
+        W_bound = numpy.sqrt(6. / (fan_in + fan_out))
+ 
+        self.W_H = theano.shared(
+            numpy.asarray(
+                rng.uniform(low=-W_bound, high=W_bound, size=filter_shape),
+                dtype=theano.config.floatX
+            ),
+            borrow=True
+        )
+        
+        self.W_T = theano.shared(
+            numpy.asarray(
+                rng.uniform(low=-W_bound, high=W_bound, size=filter_shape),
+                dtype=theano.config.floatX
+            ),
+            borrow=True
+        )
+        
+        # the bias is a 1D tensor -- one bias per output feature map
+        if activation==T.nnet.relu:
+            b_H_values = numpy.ones((filter_shape[0],), dtype=theano.config.floatX)*0.1            
+        else:
+            b_H_values = numpy.zeros((filter_shape[0],), dtype=theano.config.floatX)
+
+        self.b_H = theano.shared(value=b_H_values, borrow=True)
+
+        if b_T is None:
+            b_T_values = numpy.zeros((filter_shape[0],), dtype=theano.config.floatX)
+        else:
+            b_T_values = b_T * numpy.ones((filter_shape[0],), dtype=theano.config.floatX)
+
+        self.b_T = theano.shared(value=b_T_values, borrow=True)
+
+        # convolve input feature maps with filters
+        conv_out_H = conv2d(
+            input=input,
+            filters=self.W_H,
+            filter_shape=filter_shape,
+            input_shape=image_shape,
+            border_mode='half'
+        )
+        conv_out_T = conv2d(
+            input=input,
+            filters=self.W_T,
+            filter_shape=filter_shape,
+            input_shape=image_shape,
+            border_mode='half'
+        )
+
+        # add the bias term. Since the bias is a vector (1D array), we first
+        # reshape it to a tensor of shape (1, n_filters, 1, 1). Each bias will
+        # thus be broadcasted across mini-batches and feature map
+        # width & height
+        H_part = conv_out_H + self.b_H.dimshuffle('x', 0, 'x', 'x')
+        T_part = conv_out_T + self.b_T.dimshuffle('x', 0, 'x', 'x')
+        
+        if activation is None:
+            self.output = H_part*T.nnet.nnet.sigmoid(T_part) + input-input*T.nnet.nnet.sigmoid(T_part)
+        else:
+            self.output = activation(H_part)*T.nnet.nnet.sigmoid(T_part) + input-input*T.nnet.nnet.sigmoid(T_part)
+
+        # store parameters of this layer
+        self.params = [self.W_H, self.b_H, self.W_T, self.b_T]
+
+        # keep track of model input
+        self.input = input  
+        
 class HighwayLayer(object):
     def __init__(self, rng, input, n_in, n_out, W_H=None, b_H=None, W_T =None, b_T = None,
                  activation_H=T.tanh, activation_T = T.nnet.nnet.sigmoid):
@@ -424,6 +595,43 @@ def drop(input, p=0.5):
     srng = T.shared_randomstreams.RandomStreams(rng.randint(999999))
     mask = srng.binomial(n=1, p=p, size=input.shape, dtype=theano.config.floatX)
     return input * mask
+
+
+class DropoutLayer:
+    def __init__(self, is_train, input, p=0.5):
+        """
+        Dropout layer class
+        
+        :type is_train: theano.iscalar   
+        :param is_train: indicator pseudo-boolean (int) for switching between training and prediction
+        
+        :type input: theano.tensor.dmatrix
+        :param input: a symbolic tensor
+                           
+        :type p: float or double
+        :param p: probability of NOT dropping out a unit          
+        """
+        self.input = input
+        self.output = T.switch(T.neq(is_train, 0), drop(input, p), p*input)
+        self.params = []
+        
+class PoolingLayer(object):
+    def __init__(self, input, ds, mode='max'):
+        """
+        Pooling layer class
+        
+        :type input: theano.tensor.dmatrix
+        :param input: a symbolic tensor
+
+        :type ds: tuple of length 2
+        :param ds: a factor by which to downscale
+
+        :type mode: string
+        :param mode: pooling mode {'max', 'sum', 'average_inc_pad', 'average_exc_pad'}
+        """
+        self.input = input
+        self.output = pool.pool_2d(input=input, ds=ds, ignore_border=True, mode=mode)
+        self.params = []
     
 class DropoutHiddenLayer(object):
     def __init__(self, rng, is_train, input, n_in, n_out, p=0.5, W=None, b=None,
@@ -504,7 +712,10 @@ class train_result(object):
         self.Patience = Patience
         
         self.BestXEntropy = XEntropy[N_Epochs]
-
+        
+def doNothing():
+    return 0
+    
 def train_nn(train_model, validate_model, test_model, 
             n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose = True):
     """
@@ -644,6 +855,119 @@ def train_nn(train_model, validate_model, test_model,
             Patience = patience
         ) 
 
+def train_nn_NoValidation(train_model, test_model, n_train_batches, n_test_batches, n_epochs, verbose=True, augment_data=doNothing):
+    """
+    Wrapper function for training and test THEANO model without validation
+
+    :type train_model: Theano.function
+    :param train_model:
+
+    :type test_model: Theano.function
+    :param test_model:
+
+    :type n_train_batches: int
+    :param n_train_batches: number of training batches
+
+    :type n_test_batches: int
+    :param n_test_batches: number of testing batches
+
+    :type n_epochs: int
+    :param n_epochs: maximal number of epochs to run the optimizer
+
+    :type verbose: boolean
+    :param verbose: to print out epoch summary or not to
+
+    """
+
+    # early-stopping parameters
+    patience = 10000  # look as this many examples regardless
+    patience_increase = 10  # wait this much longer when a new best is
+                           # found
+    improvement_threshold = 0.9995  # a relative improvement of this much is
+                                   # considered significant
+    test_frequency = min(n_train_batches, patience // 2)
+                                  # go through this many
+                                  # minibatche before checking the network
+                                  # on the validation set; in this case we
+                                  # check every epoch
+
+    best_test_loss = numpy.inf
+    best_iter = 0
+    test_score = 0.
+    start_time = timeit.default_timer()
+
+    epoch = 0
+    done_looping = False
+
+    cross_entropy = {}
+    
+    while (epoch < n_epochs) and (not done_looping):
+        augment_data()
+        epoch = epoch + 1
+        for minibatch_index in range(n_train_batches):
+
+            iter = (epoch - 1) * n_train_batches + minibatch_index
+
+            cost_ij = train_model(minibatch_index, iter)
+            if (iter % 100 == 0) and verbose:
+                print('training @ iter = ', iter)
+                print(cost_ij)            
+            
+            if (iter + 1) % test_frequency == 0:
+
+                # compute zero-one loss on test set
+                test_losses = [test_model(i) for i
+                                     in range(n_test_batches)]
+                this_test_loss = numpy.mean(test_losses)
+
+                if verbose:
+                    print('epoch %i, minibatch %i/%i, test error %f %%' %
+                          (epoch,
+                           minibatch_index + 1,
+                           n_train_batches,
+                           this_test_loss * 100.))
+                
+                # if we got the best test score until now
+                if this_test_loss < best_test_loss:
+
+                    #improve patience if loss improvement is good enough
+                    if this_test_loss < best_test_loss *  \
+                       improvement_threshold:
+                        patience = max(patience, iter * patience_increase)
+
+                    # save best test score and iteration number
+                    best_test_loss = this_test_loss
+                    best_iter = iter
+
+            if patience <= iter:
+                done_looping = True
+                break
+        
+    end_time = timeit.default_timer()
+
+    # Retrieve the name of function who invokes train_nn() (caller's name)
+    curframe = inspect.currentframe()
+    calframe = inspect.getouterframes(curframe, 2)
+    
+    # Print out summary
+    print('Optimization complete.')
+    print('Best test score of %f %% obtained at iteration %i' %
+          (best_test_loss * 100., best_iter + 1))
+    print(('The training process for function ' +
+           calframe[1][3] +
+           ' ran for %.2fm' % ((end_time - start_time) / 60.)), file=sys.stderr)
+    
+    cross_entropy[epoch] = 0.0 # dummmy value
+    return train_result(
+            RunningTime = (end_time - start_time) / 60.,
+            XEntropy = cross_entropy,
+            TestPerformance = test_score * 100.,
+            BestValidationScore = 0.0,  # dummmy value
+            N_Epochs = epoch,
+            N_Iterations = best_iter + 1,
+            Patience = patience
+        ) 
+
 def load_data(dataset):
     ''' Loads the dataset
     :type dataset: string
@@ -714,6 +1038,144 @@ def load_data(dataset):
             (test_set_x, test_set_y)]
     return rval    
 
+def shared_dataset(data_xy, borrow=True):
+    """ Function that loads the dataset into shared variables
+
+    The reason we store our dataset in shared variables is to allow
+    Theano to copy it into the GPU memory (when code is run on GPU).
+    Since copying data into the GPU is slow, copying a minibatch everytime
+    is needed (the default behaviour if the data is not in a shared
+    variable) would lead to a large decrease in performance.
+    """
+    data_x, data_y = data_xy
+    shared_x = theano.shared(numpy.asarray(data_x,
+                                           dtype=theano.config.floatX),
+                             borrow=borrow)
+    shared_y = theano.shared(numpy.asarray(data_y,
+                                           dtype=theano.config.floatX),
+                             borrow=borrow)
+    # When storing data on the GPU it has to be stored as floats
+    # therefore we will store the labels as ``floatX`` as well
+    # (``shared_y`` does exactly that). But during our computations
+    # we need them as ints (we use labels as index, and if they are
+    # floats it doesn't make sense) therefore instead of returning
+    # ``shared_y`` we will have to cast it to int. This little hack
+    # lets ous get around this issue
+    return shared_x, T.cast(shared_y, 'int32')
+
+def load_data_SVHN(ds_rate=None, theano_shared=True, validation=True):
+    ''' Loads the SVHN dataset
+
+    :type ds_rate: float
+    :param ds_rate: downsample rate; should be larger than 1, if provided.
+
+    :type theano_shared: boolean
+    :param theano_shared: If true, the function returns the dataset as Theano
+    shared variables. Otherwise, the function returns raw data.
+
+    :type validation: boolean
+    :param validation: If true, extract validation dataset from train dataset.
+    '''
+    if ds_rate is not None:
+        assert(ds_rate > 1.)
+
+    # Download the CIFAR-10 dataset if it is not present
+    def check_dataset(dataset):
+        # Check if dataset is in the data directory.
+        new_path = os.path.join(
+            os.path.split(__file__)[0],
+            "..",
+            "data",
+            dataset
+        )
+        #f_name = new_path.replace("src/../data/%s"%dataset, "data/") 
+        f_name = os.path.join(
+            os.path.split(__file__)[0],
+            "..",
+            "data"
+        )
+        if (not os.path.isfile(new_path)):
+            from six.moves import urllib
+            origin = (
+                'https://www.cs.toronto.edu/~kriz/' + dataset
+            )
+            print('Downloading data from %s' % origin)
+            urllib.request.urlretrieve(origin, new_path) 
+             
+        tar = tarfile.open(new_path)
+        file_names = tar.getnames()
+        for file_name in file_names:
+            tar.extract(file_name,f_name)
+        tar.close()              
+        
+        return f_name
+    
+    f_name=check_dataset('cifar-10-matlab.tar.gz')
+    
+    train_batches=os.path.join(f_name,'cifar-10-batches-mat/data_batch_1.mat')
+    
+    
+    # Load data and convert data format
+    train_batches=['data_batch_1.mat','data_batch_2.mat','data_batch_3.mat','data_batch_4.mat','data_batch_5.mat']
+    train_batch=os.path.join(f_name,'cifar-10-batches-mat',train_batches[0])
+    train_set=scipy.io.loadmat(train_batch)
+    train_set['data']=train_set['data']/255.
+    for i in range(4):
+        train_batch=os.path.join(f_name,'cifar-10-batches-mat',train_batches[i+1])
+        temp=scipy.io.loadmat(train_batch)
+        train_set['data']=numpy.concatenate((train_set['data'],temp['data']/255.),axis=0)
+        train_set['labels']=numpy.concatenate((train_set['labels'].flatten(),temp['labels'].flatten()),axis=0)
+    
+    test_batches=os.path.join(f_name,'cifar-10-batches-mat/test_batch.mat')
+    test_set=scipy.io.loadmat(test_batches)
+    test_set['data']=test_set['data']/255.
+    test_set['labels']=test_set['labels'].flatten()
+    
+    train_set=(train_set['data'],train_set['labels'])
+    test_set=(test_set['data'],test_set['labels'])
+    
+
+    # Downsample the training dataset if specified
+    train_set_len = len(train_set[1])
+    if ds_rate is not None:
+        train_set_len = int(train_set_len // ds_rate)
+        train_set = [x[:train_set_len] for x in train_set]
+
+    if validation:
+        # Extract validation dataset from train dataset
+        valid_set = [x[-(train_set_len//5):] for x in train_set]
+        train_set = [x[:-(train_set_len//5)] for x in train_set]
+
+        # train_set, valid_set, test_set format: tuple(input, target)
+        # input is a numpy.ndarray of 2 dimensions (a matrix)
+        # where each row corresponds to an example. target is a
+        # numpy.ndarray of 1 dimension (vector) that has the same length as
+        # the number of rows in the input. It should give the target
+        # to the example with the same index in the input.
+
+        if theano_shared:
+            test_set_x, test_set_y = shared_dataset(test_set)
+            valid_set_x, valid_set_y = shared_dataset(valid_set)
+            train_set_x, train_set_y = shared_dataset(train_set)
+
+            rval = [(train_set_x, train_set_y), (valid_set_x, valid_set_y),
+                (test_set_x, test_set_y)]
+        else:
+            rval = [train_set, valid_set, test_set]
+
+        return rval
+    
+    else:
+
+        if theano_shared:
+            test_set_x, test_set_y = shared_dataset(test_set)
+            train_set_x, train_set_y = shared_dataset(train_set)
+
+            rval = [(train_set_x, train_set_y), (test_set_x, test_set_y)]
+        else:
+            rval = [train_set, test_set]
+
+        return rval
 
 def RMSprop(cost, params, lr=0.01, rho=0.5, epsilon=1e-6):
     grads = T.grad(cost=cost, wrt=params)
@@ -748,4 +1210,31 @@ def MomentumWithDecay(cost, params, itr, lr_base = 0.01, lr_decay = 1.0, lr_min 
         v_next = momentum*v_i - lr*grad_i
         updates.append((v_i, v_next))
         updates.append((param_i, param_i + v_next))
+    return updates
+
+def MomentumWithMultiStepDecay(cost, params, itr, lr_base = 0.025, lr_decay = 0.1, momentum = 0.9, step_values = []): 
+    grads = T.grad(cost=cost,wrt=params)  
+    updates = []
+
+    step = theano.shared(numpy.cast[theano.config.floatX](0))
+    flg = sum([T.eq(itr, step_value) for step_value in step_values]) # check if itr is one of the step values
+    step_next = T.switch(flg, step + numpy.cast[theano.config.floatX](1), step)
+    updates.append((step,step_next))
+    lr = lr_base*lr_decay**step_next
+
+    v = [theano.shared(numpy.zeros(param_i.shape.eval(), dtype=theano.config.floatX),borrow=True) for param_i in params]
+    for param_i, grad_i, v_i in zip(params, grads, v):
+        v_next = momentum*v_i - lr*grad_i #theano.clone(grad_i, replace={param_i: param_i + momentum*v_i})
+        updates.append((v_i, v_next))
+        updates.append((param_i, param_i + v_next))
+    return updates
+
+def MomentumG(cost, params, itr, lr_base = 0.01, lr_decay = 1.0, lr_min = 0.00001, momentum = 0.9):
+    lr = T.max(lr_base*numpy.exp(-lr_decay**(itr-1)), lr_min)
+    momentum =theano.shared(numpy.cast[theano.config.floatX](momentum), name='momentum')
+    updates = []
+    for param in params:
+        param_update = theano.shared(param.get_value()*numpy.cast[theano.config.floatX](0.))    
+        updates.append((param, param - lr*param_update))
+        updates.append((param_update, momentum*param_update + (numpy.cast[theano.config.floatX](1.) - momentum)*T.grad(cost, param)))
     return updates
