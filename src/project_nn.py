@@ -277,7 +277,10 @@ class ConvLayer(object):
         # reshape it to a tensor of shape (1, n_filters, 1, 1). Each bias will
         # thus be broadcasted across mini-batches and feature map
         # width & height
-        self.output = activation(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
+        if activation is None:
+            self.output = conv_out + self.b.dimshuffle('x', 0, 'x', 'x')
+        else:
+            self.output = activation(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
 
         # store parameters of this layer
         self.params = [self.W, self.b]
@@ -582,6 +585,13 @@ class myMLP(object):
         # keep track of model input
         self.input = input
 
+class ActivationLayer(object):
+    """ pure activation layer """
+    def __init__(self, input, activation=T.tanh):
+        self.input = input
+        self.output = activation(input)
+        self.params = []
+                         
 def drop(input, p=0.5): 
     """
     :type input: numpy.array
@@ -720,31 +730,22 @@ def train_nn(train_model, validate_model, test_model,
             n_train_batches, n_valid_batches, n_test_batches, n_epochs, verbose = True):
     """
     Wrapper function for training and test THEANO model
-
     :type train_model: Theano.function
     :param train_model:
-
     :type validate_model: Theano.function
     :param validate_model:
-
     :type test_model: Theano.function
     :param test_model:
-
     :type n_train_batches: int
     :param n_train_batches: number of training batches
-
     :type n_valid_batches: int
     :param n_valid_batches: number of validation batches
-
     :type n_test_batches: int
     :param n_test_batches: number of testing batches
-
     :type n_epochs: int
     :param n_epochs: maximal number of epochs to run the optimizer
-
     :type verbose: boolean
     :param verbose: to print out epoch summary or not to
-
     """
 
     # early-stopping parameters
@@ -858,25 +859,18 @@ def train_nn(train_model, validate_model, test_model,
 def train_nn_NoValidation(train_model, test_model, n_train_batches, n_test_batches, n_epochs, verbose=True, augment_data=doNothing):
     """
     Wrapper function for training and test THEANO model without validation
-
     :type train_model: Theano.function
     :param train_model:
-
     :type test_model: Theano.function
     :param test_model:
-
     :type n_train_batches: int
     :param n_train_batches: number of training batches
-
     :type n_test_batches: int
     :param n_test_batches: number of testing batches
-
     :type n_epochs: int
     :param n_epochs: maximal number of epochs to run the optimizer
-
     :type verbose: boolean
     :param verbose: to print out epoch summary or not to
-
     """
 
     # early-stopping parameters
@@ -1040,7 +1034,6 @@ def load_data(dataset):
 
 def shared_dataset(data_xy, borrow=True):
     """ Function that loads the dataset into shared variables
-
     The reason we store our dataset in shared variables is to allow
     Theano to copy it into the GPU memory (when code is run on GPU).
     Since copying data into the GPU is slow, copying a minibatch everytime
@@ -1065,14 +1058,11 @@ def shared_dataset(data_xy, borrow=True):
 
 def load_data_SVHN(ds_rate=None, theano_shared=True, validation=True):
     ''' Loads the SVHN dataset
-
     :type ds_rate: float
     :param ds_rate: downsample rate; should be larger than 1, if provided.
-
     :type theano_shared: boolean
     :param theano_shared: If true, the function returns the dataset as Theano
     shared variables. Otherwise, the function returns raw data.
-
     :type validation: boolean
     :param validation: If true, extract validation dataset from train dataset.
     '''

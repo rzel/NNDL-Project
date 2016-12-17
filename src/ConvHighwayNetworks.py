@@ -14,127 +14,178 @@ from theano.tensor.nnet import conv2d
 import pandas as pd
 import pickle
 
-from project_nn import LogisticRegression, load_data, HiddenLayer, ConvLayer, ConvHighwayLayer, HighwayLayer, DropoutLayer, PoolingLayer, myMLP, HighwayNetwork, train_result, train_nn_NoValidation, MomentumWithMultiStepDecay
-from project_utils import translate_image, rotate_image, flip_image
+from project_nn import LogisticRegression, load_data, HiddenLayer, ConvLayer, ConvHighwayLayer, HighwayLayer, DropoutLayer, PoolingLayer, ActivationLayer, myMLP, HighwayNetwork, train_result, train_nn_NoValidation, MomentumWithMultiStepDecay
+from project_utils import translate_image, rotate_image, flip_image, zero_padding
 
-class ConvHighway0(object):
-    def __init__(self, rng, x, b_T, drop_rate, training_enabled, batch_size):
+class ResNet(object):
+    def __init__(self, rng, x, n, drop_rate, training_enabled, batch_size):
 
         # Reshape matrix of rasterized images of shape (batch_size, 32 * 32) to a 4D tensor
         input_layer = x.reshape((batch_size, 3, 32, 32))
 
         self.allLayers = []
+        self.allLayers.append(
+            DropoutLayer(is_train=training_enabled, 
+                         input=input_layer, 
+                         p=1-drop_rate))
 
+        # output map=32*32, filter=16
         self.allLayers.append(        
             ConvLayer(rng=rng, 
                       input=input_layer, 
-                      filter_shape=(64, 3, 3, 3), 
+                      filter_shape=(16, 3, 3, 3), 
                       image_shape=(batch_size, 3, 32, 32),
                       activation=T.nnet.nnet.relu))
 
         self.allLayers.append(        
             ConvLayer(rng=rng, 
                       input=self.allLayers[-1].output, 
-                      filter_shape=(64, 64, 3, 3), 
-                      image_shape=(batch_size, 64, 32, 32),
+                      filter_shape=(16, 16, 3, 3), 
+                      image_shape=(batch_size, 16, 32, 32),
                       activation=T.nnet.nnet.relu))
 
+        self.allLayers.append(        
+            ConvLayer(rng=rng, 
+                      input=self.allLayers[-1].output, 
+                      filter_shape=(16, 16, 3, 3), 
+                      image_shape=(batch_size, 16, 32, 32),
+                      activation=None))
+
+        self.allLayers.append(        
+            ActivationLayer(input=self.allLayers[-1].output+self.allLayers[-3].output, 
+                            activation=T.nnet.nnet.relu))
+        
+        for i in xrange(n-1):              
+            self.allLayers.append(        
+                ConvLayer(rng=rng, 
+                          input=self.allLayers[-1].output, 
+                          filter_shape=(16, 16, 3, 3), 
+                          image_shape=(batch_size, 16, 32, 32),
+                          activation=T.nnet.nnet.relu)) 
+    
+            self.allLayers.append(        
+                ConvLayer(rng=rng, 
+                          input=self.allLayers[-1].output, 
+                          filter_shape=(16, 16, 3, 3), 
+                          image_shape=(batch_size, 16, 32, 32),
+                          activation=None))
+    
+            self.allLayers.append(        
+                ActivationLayer(input=self.allLayers[-1].output+self.allLayers[-3].output, 
+                                activation=T.nnet.nnet.relu))
+                      
         self.allLayers.append(        
             PoolingLayer(input=self.allLayers[-1].output, 
-                         ds=(2,2),
-                         mode='max'))
-
-        self.allLayers.append(        
-            DropoutLayer(is_train=training_enabled,
-                         input=self.allLayers[-1].output, 
-                         p=1-drop_rate))
-
-        self.allLayers.append(        
-            ConvLayer(rng=rng, 
-                      input=self.allLayers[-1].output, 
-                      filter_shape=(128, 64, 3, 3), 
-                      image_shape=(batch_size, 64, 16, 16),
-                      activation=T.nnet.nnet.relu))
-
-        self.allLayers.append(        
-            ConvLayer(rng=rng, 
-                      input=self.allLayers[-1].output, 
-                      filter_shape=(128, 128, 3, 3), 
-                      image_shape=(batch_size, 128, 16, 16),
-                      activation=T.nnet.nnet.relu))
-
-        self.allLayers.append(        
-            PoolingLayer(input=self.allLayers[-1].output, 
-                                  ds=(2,2),
-                                  mode='max'))
-
-        self.allLayers.append(        
-            DropoutLayer(is_train=training_enabled, 
-                                  input=self.allLayers[-1].output, 
-                                  p=1-drop_rate))
-
-        self.allLayers.append(        
-            ConvLayer(rng=rng, 
-                      input=self.allLayers[-1].output, 
-                      filter_shape=(256, 128, 3, 3), 
-                      image_shape=(batch_size, 128, 8, 8),
-                      activation=T.nnet.nnet.relu))
-
-        self.allLayers.append(        
-            ConvLayer(rng=rng, 
-                      input=self.allLayers[-1].output, 
-                      filter_shape=(256, 256, 3, 3), 
-                      image_shape=(batch_size, 256, 8, 8),
-                      activation=T.nnet.nnet.relu))
-
-        self.allLayers.append(        
-            ConvLayer(rng=rng, 
-                      input=self.allLayers[-1].output, 
-                      filter_shape=(256, 256, 3, 3), 
-                      image_shape=(batch_size, 256, 8, 8),
-                      activation=T.nnet.nnet.relu))
-
-        self.allLayers.append(        
-            ConvLayer(rng=rng, 
-                      input=self.allLayers[-1].output, 
-                      filter_shape=(256, 256, 3, 3), 
-                      image_shape=(batch_size, 256, 8, 8),
-                      activation=T.nnet.nnet.relu))
-
-        self.allLayers.append(        
-            PoolingLayer(input=self.allLayers[-1].output, 
-                                  ds=(2,2),
-                                  mode='max'))
-
-        self.allLayers.append(        
-            DropoutLayer(is_train=training_enabled, 
-                         input=self.allLayers[-1].output, 
-                         p=1-drop_rate))
-
-        self.allLayers.append(        
-            HiddenLayer(rng,
-                        input=self.allLayers[-1].output.flatten(2),
-                        n_in=256 * 4 * 4,
-                        n_out=1024,
-                        activation=T.nnet.nnet.relu))        
-
-        self.allLayers.append(        
-            DropoutLayer(is_train=training_enabled, 
-                                  input=self.allLayers[-1].output))        
-
-        self.allLayers.append(        
-            HiddenLayer(rng,
-                        input=self.allLayers[-1].output,
-                        n_in=1024,
-                        n_out=1024,
-                        activation=T.nnet.nnet.relu))     
+                        ds=(2,2),
+                        mode='max'))
  
         self.allLayers.append(        
             DropoutLayer(is_train=training_enabled, 
-                                  input=self.allLayers[-1].output))        
+                         input=self.allLayers[-1].output, 
+                         p=1-drop_rate))
+                                  
+        # output map=16*16, filter=32
+        self.allLayers.append(
+            ConvLayer(rng=rng, 
+                      input=self.allLayers[-1].output, 
+                      filter_shape=(32, 16, 3, 3), 
+                      image_shape=(batch_size, 16, 16, 16),
+                      activation=T.nnet.nnet.relu))                    
 
         self.allLayers.append(        
-            LogisticRegression(input=self.allLayers[-1].output.flatten(2), n_in=1024, n_out=10))
+            ConvLayer(rng=rng, 
+                      input=self.allLayers[-1].output, 
+                      filter_shape=(32, 32, 3, 3), 
+                      image_shape=(batch_size, 32, 16, 16),
+                      activation=None))
+
+        self.allLayers.append(        
+            ActivationLayer(input=self.allLayers[-1].output
+                            +zero_padding(self.allLayers[-3].output,(batch_size, 16, 16, 16),32),
+                            activation=T.nnet.nnet.relu))
+
+        for i in xrange(n-1):                            
+            self.allLayers.append(        
+                ConvLayer(rng=rng, 
+                          input=self.allLayers[-1].output, 
+                          filter_shape=(32, 32, 3, 3), 
+                          image_shape=(batch_size, 32, 16, 16),
+                          activation=T.nnet.nnet.relu)) 
+    
+            self.allLayers.append(        
+                ConvLayer(rng=rng, 
+                          input=self.allLayers[-1].output, 
+                          filter_shape=(32, 32, 3, 3), 
+                          image_shape=(batch_size, 32, 16, 16),
+                          activation=None))
+    
+            self.allLayers.append(        
+                ActivationLayer(input=self.allLayers[-1].output+self.allLayers[-3].output, 
+                                activation=T.nnet.nnet.relu))
+
+                      
+        self.allLayers.append(        
+            PoolingLayer(input=self.allLayers[-1].output, 
+                        ds=(2,2),
+                        mode='max'))
+
+        self.allLayers.append(        
+            DropoutLayer(is_train=training_enabled, 
+                         input=self.allLayers[-1].output, 
+                         p=1-drop_rate))
+                                 
+
+        # output map=8*8, filter=64
+        self.allLayers.append(        
+            ConvLayer(rng=rng, 
+                      input=self.allLayers[-1].output, 
+                      filter_shape=(64, 32, 3, 3), 
+                      image_shape=(batch_size, 32, 8, 8),
+                      activation=T.nnet.nnet.relu))
+
+        self.allLayers.append(        
+            ConvLayer(rng=rng, 
+                      input=self.allLayers[-1].output, 
+                      filter_shape=(64, 64, 3, 3), 
+                      image_shape=(batch_size, 64, 8, 8),
+                      activation=None))
+
+        self.allLayers.append(        
+            ActivationLayer(input=self.allLayers[-1].output
+                            +zero_padding(self.allLayers[-3].output,(batch_size, 32, 8, 8),64),
+                            activation=T.nnet.nnet.relu))
+        
+        for i in xrange(n-1):  
+            self.allLayers.append(        
+                ConvLayer(rng=rng, 
+                          input=self.allLayers[-1].output, 
+                          filter_shape=(64, 64, 3, 3), 
+                          image_shape=(batch_size, 64, 8, 8),
+                          activation=T.nnet.nnet.relu))         
+    
+            self.allLayers.append(        
+                ConvLayer(rng=rng, 
+                          input=self.allLayers[-1].output, 
+                          filter_shape=(64, 64, 3, 3), 
+                          image_shape=(batch_size, 64, 8, 8),
+                          activation=None))
+    
+            self.allLayers.append(        
+                ActivationLayer(input=self.allLayers[-1].output+self.allLayers[-3].output, 
+                                activation=T.nnet.nnet.relu))
+                      
+        self.allLayers.append(        
+            PoolingLayer(input=self.allLayers[-1].output, 
+                         ds=(8,8),
+                         mode='average_exc_pad'))
+
+        self.allLayers.append(        
+            DropoutLayer(is_train=training_enabled, 
+                         input=self.allLayers[-1].output, 
+                         p=1-drop_rate))
+                      
+        self.allLayers.append(        
+            LogisticRegression(input=self.allLayers[-1].output.flatten(2), n_in=64, n_out=10))
         
         self.output = self.allLayers[-1]
         self.params = sum([each.params for each in self.allLayers], [])
@@ -399,14 +450,7 @@ def test_ConvHighway(datasets, model, learning_rate=0.01, lr_decay=0.1, momentum
     ######################
     print('... building the model')
     
-    if model==0:
-        highway_net = ConvHighway0(rng=rng, 
-                                   x=x, 
-                                   b_T=b_T, 
-                                   drop_rate=drop_rate, 
-                                   training_enabled=training_enabled,
-                                   batch_size=batch_size)
-    elif model==1:
+    if model==1:
         highway_net = ConvHighway1(rng=rng, 
                                    x=x, 
                                    b_T=b_T, 
@@ -420,6 +464,34 @@ def test_ConvHighway(datasets, model, learning_rate=0.01, lr_decay=0.1, momentum
                                    drop_rate=drop_rate, 
                                    training_enabled=training_enabled,
                                    batch_size=batch_size)
+    elif model==11:
+        highway_net = ResNet(rng=rng, 
+                              x=x,
+                              n=3,
+                              drop_rate=drop_rate, 
+                              training_enabled=training_enabled,
+                              batch_size=batch_size)
+    elif model==12:
+        highway_net = ResNet(rng=rng, 
+                              x=x,
+                              n=5,
+                              drop_rate=drop_rate, 
+                              training_enabled=training_enabled,
+                              batch_size=batch_size)
+    elif model==13:
+        highway_net = ResNet(rng=rng, 
+                              x=x,
+                              n=7,
+                              drop_rate=drop_rate, 
+                              training_enabled=training_enabled,
+                              batch_size=batch_size)
+    elif model==14:
+        highway_net = ResNet(rng=rng, 
+                              x=x,
+                              n=9,
+                              drop_rate=drop_rate, 
+                              training_enabled=training_enabled,
+                              batch_size=batch_size)
     else:
         raise NotImplementedError()
 
