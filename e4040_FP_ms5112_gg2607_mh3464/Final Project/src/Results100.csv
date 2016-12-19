@@ -1,0 +1,26 @@
+,Running time,XEntropy,Test performance,Best Validation score,Max epochs,N epochs,Activation function - hidden,Activation function - highway,L2_reg parameter,L1_reg parameter,Batch size,Iterations,Hidden neurons per layer,Hidden Layers,Highway Layers,Learning rate,lr_decay,momentum,Patience,b_T
+105,18.1921633164,0.0351427400599,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.97,0.85,10000,-5
+106,18.5876793345,0.0090641393282,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.99,0.85,10000,-5
+107,18.600451831,0.0174892437751,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.97,0.95,10000,-5
+108,18.6511810819,0.0542569583766,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.99,0.95,10000,-5
+109,18.6764188011,0.00268968886253,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.97,0.85,10000,-6
+110,18.6347779473,0.00795816629985,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.99,0.85,10000,-6
+111,18.7620447675,0.00255986096943,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.97,0.95,10000,-6
+112,18.80028735,0.00530709334905,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.1,0.99,0.95,10000,-6
+113,18.8822217981,0.0567650937289,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.97,0.85,10000,-5
+114,18.7224819859,0.0728643438015,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.99,0.85,10000,-5
+115,18.829069833,0.0868811314218,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.97,0.95,10000,-5
+116,18.8621646007,0.120368434224,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.99,0.95,10000,-5
+117,18.7446281155,0.0184005371057,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.97,0.85,10000,-6
+118,18.8244389812,0.0339623294389,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.99,0.85,10000,-6
+119,18.638512965,0.0238580583055,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.97,0.95,10000,-6
+120,18.6736147006,0.0349698892832,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,<function relu at 0x7f5e7d2dea28>,0,0,20,1,50,1,99,0.05,0.99,0.95,10000,-6
+121,17.680666701,0.00430884702806,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.97,0.85,10000,-5
+122,17.8165482004,0.00582501511276,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.99,0.85,10000,-5
+123,17.6193003496,0.0305977735128,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.97,0.95,10000,-5
+124,17.6958529154,0.0819381459346,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.99,0.95,10000,-5
+125,17.9365274668,0.0100820381322,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.97,0.85,10000,-6
+126,18.0712934017,0.00412188667315,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.99,0.85,10000,-6
+127,18.0765995026,0.00267226816062,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.97,0.95,10000,-6
+128,18.161801668,0.00431087767589,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.1,0.99,0.95,10000,-6
+129,18.231726865,0.0145767308939,0.0,inf,50,50,<function relu at 0x7f5e7d2dea28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,99,0.05,0.97,0.85,10000,-5

@@ -1,0 +1,3179 @@
+... building the model
+training @ iter =  0
+2.30258512497
+training @ iter =  100
+2.29909420013
+training @ iter =  200
+2.30154299736
+training @ iter =  300
+2.29624843597
+training @ iter =  400
+2.31237912178
+epoch 1, minibatch 500/500, test error 88.510000 %
+training @ iter =  500
+2.31188821793
+training @ iter =  600
+2.2979183197
+training @ iter =  700
+2.30037212372
+training @ iter =  800
+2.29492974281
+training @ iter =  900
+2.30551505089
+epoch 2, minibatch 500/500, test error 85.860000 %
+training @ iter =  1000
+2.2808983326
+training @ iter =  1100
+2.17710351944
+training @ iter =  1200
+2.25388765335
+training @ iter =  1300
+2.28819465637
+training @ iter =  1400
+2.10894870758
+epoch 3, minibatch 500/500, test error 78.020000 %
+training @ iter =  1500
+2.18157219887
+training @ iter =  1600
+2.01600551605
+training @ iter =  1700
+2.05137252808
+training @ iter =  1800
+2.04400706291
+training @ iter =  1900
+1.85362458229
+epoch 4, minibatch 500/500, test error 68.300000 %
+training @ iter =  2000
+2.01998543739
+training @ iter =  2100
+1.77269291878
+training @ iter =  2200
+1.75457108021
+training @ iter =  2300
+1.73620486259
+training @ iter =  2400
+1.5463360548
+epoch 5, minibatch 500/500, test error 61.910000 %
+training @ iter =  2500
+1.78863894939
+training @ iter =  2600
+1.5399222374
+training @ iter =  2700
+1.65942144394
+training @ iter =  2800
+1.61898136139
+training @ iter =  2900
+1.44000768661
+epoch 6, minibatch 500/500, test error 55.890000 %
+training @ iter =  3000
+1.56573760509
+training @ iter =  3100
+1.49191606045
+training @ iter =  3200
+1.57725095749
+training @ iter =  3300
+1.51671075821
+training @ iter =  3400
+1.37770247459
+epoch 7, minibatch 500/500, test error 53.630000 %
+training @ iter =  3500
+1.51050806046
+training @ iter =  3600
+1.35268616676
+training @ iter =  3700
+1.46647763252
+training @ iter =  3800
+1.47131109238
+training @ iter =  3900
+1.30885481834
+epoch 8, minibatch 500/500, test error 52.290000 %
+training @ iter =  4000
+1.42087066174
+training @ iter =  4100
+1.25393283367
+training @ iter =  4200
+1.36703121662
+training @ iter =  4300
+1.23382174969
+training @ iter =  4400
+1.15457606316
+epoch 9, minibatch 500/500, test error 45.810000 %
+training @ iter =  4500
+1.15180158615
+training @ iter =  4600
+1.25400865078
+training @ iter =  4700
+1.20727324486
+training @ iter =  4800
+0.958914935589
+training @ iter =  4900
+0.964532256126
+epoch 10, minibatch 500/500, test error 39.960000 %
+training @ iter =  5000
+1.07546961308
+training @ iter =  5100
+1.03984439373
+training @ iter =  5200
+1.12021481991
+training @ iter =  5300
+0.989187598228
+training @ iter =  5400
+0.927486419678
+epoch 11, minibatch 500/500, test error 34.650000 %
+training @ iter =  5500
+1.02376830578
+training @ iter =  5600
+0.961400151253
+training @ iter =  5700
+1.04903638363
+training @ iter =  5800
+0.848924279213
+training @ iter =  5900
+0.832665860653
+epoch 12, minibatch 500/500, test error 33.310000 %
+training @ iter =  6000
+0.922240018845
+training @ iter =  6100
+0.910933554173
+training @ iter =  6200
+0.867473900318
+training @ iter =  6300
+0.753027737141
+training @ iter =  6400
+0.747137546539
+epoch 13, minibatch 500/500, test error 31.680000 %
+training @ iter =  6500
+0.89340621233
+training @ iter =  6600
+0.848581075668
+training @ iter =  6700
+0.7639144063
+training @ iter =  6800
+0.705735445023
+training @ iter =  6900
+0.704562664032
+epoch 14, minibatch 500/500, test error 30.420000 %
+training @ iter =  7000
+0.829685389996
+training @ iter =  7100
+0.931616187096
+training @ iter =  7200
+0.771345853806
+training @ iter =  7300
+0.702291250229
+training @ iter =  7400
+0.700980007648
+epoch 15, minibatch 500/500, test error 25.140000 %
+training @ iter =  7500
+0.919392824173
+training @ iter =  7600
+0.672912299633
+training @ iter =  7700
+0.70342028141
+training @ iter =  7800
+0.641193628311
+training @ iter =  7900
+0.662320315838
+epoch 16, minibatch 500/500, test error 23.020000 %
+training @ iter =  8000
+0.631616950035
+training @ iter =  8100
+0.670443713665
+training @ iter =  8200
+0.671721637249
+training @ iter =  8300
+0.682638943195
+training @ iter =  8400
+0.575166761875
+epoch 17, minibatch 500/500, test error 21.940000 %
+training @ iter =  8500
+0.661776721478
+training @ iter =  8600
+0.693162381649
+training @ iter =  8700
+0.702611923218
+training @ iter =  8800
+0.621122300625
+training @ iter =  8900
+0.517598390579
+epoch 18, minibatch 500/500, test error 21.140000 %
+training @ iter =  9000
+0.666870713234
+training @ iter =  9100
+0.733204782009
+training @ iter =  9200
+0.517243564129
+training @ iter =  9300
+0.488999962807
+training @ iter =  9400
+0.540392994881
+epoch 19, minibatch 500/500, test error 21.030000 %
+training @ iter =  9500
+0.630990147591
+training @ iter =  9600
+0.650641322136
+training @ iter =  9700
+0.579443752766
+training @ iter =  9800
+0.597811460495
+training @ iter =  9900
+0.41718429327
+epoch 20, minibatch 500/500, test error 20.940000 %
+training @ iter =  10000
+0.687996804714
+training @ iter =  10100
+0.647521793842
+training @ iter =  10200
+0.434755563736
+training @ iter =  10300
+0.476193785667
+training @ iter =  10400
+0.514161348343
+epoch 21, minibatch 500/500, test error 22.060000 %
+training @ iter =  10500
+0.5473716259
+training @ iter =  10600
+0.656346738338
+training @ iter =  10700
+0.580991923809
+training @ iter =  10800
+0.505230844021
+training @ iter =  10900
+0.482272565365
+epoch 22, minibatch 500/500, test error 20.020000 %
+training @ iter =  11000
+0.476564407349
+training @ iter =  11100
+0.488834917545
+training @ iter =  11200
+0.587528169155
+training @ iter =  11300
+0.579941868782
+training @ iter =  11400
+0.424922943115
+epoch 23, minibatch 500/500, test error 18.460000 %
+training @ iter =  11500
+0.524871528149
+training @ iter =  11600
+0.479412764311
+training @ iter =  11700
+0.500742435455
+training @ iter =  11800
+0.428153067827
+training @ iter =  11900
+0.506636977196
+epoch 24, minibatch 500/500, test error 19.330000 %
+training @ iter =  12000
+0.502262353897
+training @ iter =  12100
+0.620973944664
+training @ iter =  12200
+0.504982471466
+training @ iter =  12300
+0.390420824289
+training @ iter =  12400
+0.33634147048
+epoch 25, minibatch 500/500, test error 20.790000 %
+training @ iter =  12500
+0.491219490767
+training @ iter =  12600
+0.599363565445
+training @ iter =  12700
+0.47177952528
+training @ iter =  12800
+0.501053929329
+training @ iter =  12900
+0.404827564955
+epoch 26, minibatch 500/500, test error 19.720000 %
+training @ iter =  13000
+0.494341701269
+training @ iter =  13100
+0.548472821712
+training @ iter =  13200
+0.512651205063
+training @ iter =  13300
+0.492821246386
+training @ iter =  13400
+0.434036642313
+epoch 27, minibatch 500/500, test error 18.180000 %
+training @ iter =  13500
+0.602031230927
+training @ iter =  13600
+0.390467822552
+training @ iter =  13700
+0.437328487635
+training @ iter =  13800
+0.313882619143
+training @ iter =  13900
+0.333447337151
+epoch 28, minibatch 500/500, test error 17.510000 %
+training @ iter =  14000
+0.416491776705
+training @ iter =  14100
+0.498551636934
+training @ iter =  14200
+0.497474074364
+training @ iter =  14300
+0.457065433264
+training @ iter =  14400
+0.335550010204
+epoch 29, minibatch 500/500, test error 17.780000 %
+training @ iter =  14500
+0.393244326115
+training @ iter =  14600
+0.489102929831
+training @ iter =  14700
+0.333171933889
+training @ iter =  14800
+0.437105476856
+training @ iter =  14900
+0.299155116081
+epoch 30, minibatch 500/500, test error 18.380000 %
+training @ iter =  15000
+0.448341101408
+training @ iter =  15100
+0.539847612381
+training @ iter =  15200
+0.434513777494
+training @ iter =  15300
+0.499173462391
+training @ iter =  15400
+0.339602649212
+epoch 31, minibatch 500/500, test error 18.230000 %
+training @ iter =  15500
+0.444902807474
+training @ iter =  15600
+0.636877954006
+training @ iter =  15700
+0.259603470564
+training @ iter =  15800
+0.374378561974
+training @ iter =  15900
+0.396110087633
+epoch 32, minibatch 500/500, test error 17.460000 %
+training @ iter =  16000
+0.272929519415
+training @ iter =  16100
+0.468980938196
+training @ iter =  16200
+0.390369176865
+training @ iter =  16300
+0.428771525621
+training @ iter =  16400
+0.235516160727
+epoch 33, minibatch 500/500, test error 16.970000 %
+training @ iter =  16500
+0.382736384869
+training @ iter =  16600
+0.407337486744
+training @ iter =  16700
+0.311787426472
+training @ iter =  16800
+0.549092531204
+training @ iter =  16900
+0.359720796347
+epoch 34, minibatch 500/500, test error 19.650000 %
+training @ iter =  17000
+0.310201913118
+training @ iter =  17100
+0.403678804636
+training @ iter =  17200
+0.339372366667
+training @ iter =  17300
+0.542510151863
+training @ iter =  17400
+0.322715729475
+epoch 35, minibatch 500/500, test error 17.840000 %
+training @ iter =  17500
+0.437329143286
+training @ iter =  17600
+0.450606703758
+training @ iter =  17700
+0.29622733593
+training @ iter =  17800
+0.3760420084
+training @ iter =  17900
+0.27985945344
+epoch 36, minibatch 500/500, test error 18.070000 %
+training @ iter =  18000
+0.337527543306
+training @ iter =  18100
+0.389928281307
+training @ iter =  18200
+0.301182299852
+training @ iter =  18300
+0.305733591318
+training @ iter =  18400
+0.241270527244
+epoch 37, minibatch 500/500, test error 17.810000 %
+training @ iter =  18500
+0.318423211575
+training @ iter =  18600
+0.536260783672
+training @ iter =  18700
+0.234561309218
+training @ iter =  18800
+0.288530766964
+training @ iter =  18900
+0.219003766775
+epoch 38, minibatch 500/500, test error 17.810000 %
+training @ iter =  19000
+0.249067798257
+training @ iter =  19100
+0.538205862045
+training @ iter =  19200
+0.256385147572
+training @ iter =  19300
+0.307331800461
+training @ iter =  19400
+0.311131834984
+epoch 39, minibatch 500/500, test error 18.480000 %
+training @ iter =  19500
+0.384116470814
+training @ iter =  19600
+0.300624489784
+training @ iter =  19700
+0.316007643938
+training @ iter =  19800
+0.440329134464
+training @ iter =  19900
+0.239921107888
+epoch 40, minibatch 500/500, test error 17.160000 %
+training @ iter =  20000
+0.213577136397
+training @ iter =  20100
+0.36357703805
+training @ iter =  20200
+0.396149665117
+training @ iter =  20300
+0.35868948698
+training @ iter =  20400
+0.17089228332
+epoch 41, minibatch 500/500, test error 17.510000 %
+training @ iter =  20500
+0.237946018577
+training @ iter =  20600
+0.408224463463
+training @ iter =  20700
+0.385610461235
+training @ iter =  20800
+0.280113756657
+training @ iter =  20900
+0.223662719131
+epoch 42, minibatch 500/500, test error 17.420000 %
+training @ iter =  21000
+0.418795585632
+training @ iter =  21100
+0.309755712748
+training @ iter =  21200
+0.333834141493
+training @ iter =  21300
+0.246230646968
+training @ iter =  21400
+0.197352930903
+epoch 43, minibatch 500/500, test error 17.050000 %
+training @ iter =  21500
+0.24319858849
+training @ iter =  21600
+0.371918946505
+training @ iter =  21700
+0.306493997574
+training @ iter =  21800
+0.253423005342
+training @ iter =  21900
+0.252230405807
+epoch 44, minibatch 500/500, test error 19.080000 %
+training @ iter =  22000
+0.299346774817
+training @ iter =  22100
+0.36951559782
+training @ iter =  22200
+0.327984988689
+training @ iter =  22300
+0.249098077416
+training @ iter =  22400
+0.286759704351
+epoch 45, minibatch 500/500, test error 16.940000 %
+training @ iter =  22500
+0.273220419884
+training @ iter =  22600
+0.334922879934
+training @ iter =  22700
+0.288341313601
+training @ iter =  22800
+0.311804503202
+training @ iter =  22900
+0.270126312971
+epoch 46, minibatch 500/500, test error 17.490000 %
+training @ iter =  23000
+0.22841489315
+training @ iter =  23100
+0.276556581259
+training @ iter =  23200
+0.296691268682
+training @ iter =  23300
+0.232793077826
+training @ iter =  23400
+0.232078492641
+epoch 47, minibatch 500/500, test error 18.340000 %
+training @ iter =  23500
+0.372075349092
+training @ iter =  23600
+0.328070998192
+training @ iter =  23700
+0.250246465206
+training @ iter =  23800
+0.288907051086
+training @ iter =  23900
+0.372916042805
+epoch 48, minibatch 500/500, test error 18.140000 %
+training @ iter =  24000
+0.21609428525
+training @ iter =  24100
+0.369169265032
+training @ iter =  24200
+0.34206444025
+training @ iter =  24300
+0.303407937288
+training @ iter =  24400
+0.202703148127
+epoch 49, minibatch 500/500, test error 16.060000 %
+training @ iter =  24500
+0.205315053463
+training @ iter =  24600
+0.25927349925
+training @ iter =  24700
+0.303976237774
+training @ iter =  24800
+0.243530154228
+training @ iter =  24900
+0.159304842353
+epoch 50, minibatch 500/500, test error 16.640000 %
+training @ iter =  25000
+0.257558196783
+training @ iter =  25100
+0.211887314916
+training @ iter =  25200
+0.209695860744
+training @ iter =  25300
+0.339428037405
+training @ iter =  25400
+0.198788762093
+epoch 51, minibatch 500/500, test error 16.590000 %
+training @ iter =  25500
+0.174790814519
+training @ iter =  25600
+0.32312554121
+training @ iter =  25700
+0.265386134386
+training @ iter =  25800
+0.312774628401
+training @ iter =  25900
+0.210612908006
+epoch 52, minibatch 500/500, test error 18.610000 %
+training @ iter =  26000
+0.29205596447
+training @ iter =  26100
+0.321486353874
+training @ iter =  26200
+0.207836762071
+training @ iter =  26300
+0.247789233923
+training @ iter =  26400
+0.207604527473
+epoch 53, minibatch 500/500, test error 16.420000 %
+training @ iter =  26500
+0.189190343022
+training @ iter =  26600
+0.324135661125
+training @ iter =  26700
+0.13860796392
+training @ iter =  26800
+0.160996764898
+training @ iter =  26900
+0.22920948267
+epoch 54, minibatch 500/500, test error 17.000000 %
+training @ iter =  27000
+0.289220124483
+training @ iter =  27100
+0.266292273998
+training @ iter =  27200
+0.289776235819
+training @ iter =  27300
+0.218103483319
+training @ iter =  27400
+0.174021735787
+epoch 55, minibatch 500/500, test error 18.500000 %
+training @ iter =  27500
+0.205675646663
+training @ iter =  27600
+0.202532574534
+training @ iter =  27700
+0.156215652823
+training @ iter =  27800
+0.252803623676
+training @ iter =  27900
+0.222990691662
+epoch 56, minibatch 500/500, test error 18.340000 %
+training @ iter =  28000
+0.271037399769
+training @ iter =  28100
+0.246930778027
+training @ iter =  28200
+0.170538753271
+training @ iter =  28300
+0.264965176582
+training @ iter =  28400
+0.143446803093
+epoch 57, minibatch 500/500, test error 16.070000 %
+training @ iter =  28500
+0.261673212051
+training @ iter =  28600
+0.138397410512
+training @ iter =  28700
+0.250647425652
+training @ iter =  28800
+0.201990693808
+training @ iter =  28900
+0.151194885373
+epoch 58, minibatch 500/500, test error 17.630000 %
+training @ iter =  29000
+0.20006480813
+training @ iter =  29100
+0.308434098959
+training @ iter =  29200
+0.255213558674
+training @ iter =  29300
+0.152209624648
+training @ iter =  29400
+0.296162843704
+epoch 59, minibatch 500/500, test error 16.010000 %
+training @ iter =  29500
+0.311649233103
+training @ iter =  29600
+0.169793337584
+training @ iter =  29700
+0.141574516892
+training @ iter =  29800
+0.148440271616
+training @ iter =  29900
+0.207970067859
+epoch 60, minibatch 500/500, test error 17.210000 %
+training @ iter =  30000
+0.288107335567
+training @ iter =  30100
+0.168266549706
+training @ iter =  30200
+0.116800747812
+training @ iter =  30300
+0.110793560743
+training @ iter =  30400
+0.112863600254
+epoch 61, minibatch 500/500, test error 16.230000 %
+training @ iter =  30500
+0.167465358973
+training @ iter =  30600
+0.185506939888
+training @ iter =  30700
+0.173488140106
+training @ iter =  30800
+0.111004292965
+training @ iter =  30900
+0.0906752794981
+epoch 62, minibatch 500/500, test error 16.590000 %
+training @ iter =  31000
+0.107648313046
+training @ iter =  31100
+0.174098163843
+training @ iter =  31200
+0.134351879358
+training @ iter =  31300
+0.0751536861062
+training @ iter =  31400
+0.063577003777
+epoch 63, minibatch 500/500, test error 16.010000 %
+training @ iter =  31500
+0.113249629736
+training @ iter =  31600
+0.0895845517516
+training @ iter =  31700
+0.15179720521
+training @ iter =  31800
+0.21267080307
+training @ iter =  31900
+0.0489882566035
+epoch 64, minibatch 500/500, test error 15.430000 %
+training @ iter =  32000
+0.0945532396436
+training @ iter =  32100
+0.0821337774396
+training @ iter =  32200
+0.15128056705
+training @ iter =  32300
+0.0505270659924
+training @ iter =  32400
+0.185413628817
+epoch 65, minibatch 500/500, test error 16.190000 %
+training @ iter =  32500
+0.0484205260873
+training @ iter =  32600
+0.101503886282
+training @ iter =  32700
+0.137398347259
+training @ iter =  32800
+0.132198050618
+training @ iter =  32900
+0.0618439391255
+epoch 66, minibatch 500/500, test error 17.170000 %
+training @ iter =  33000
+0.0861030966043
+training @ iter =  33100
+0.162240624428
+training @ iter =  33200
+0.0832841098309
+training @ iter =  33300
+0.0944551452994
+training @ iter =  33400
+0.0517495498061
+epoch 67, minibatch 500/500, test error 16.280000 %
+training @ iter =  33500
+0.0477210730314
+training @ iter =  33600
+0.117287233472
+training @ iter =  33700
+0.101703435183
+training @ iter =  33800
+0.145216792822
+training @ iter =  33900
+0.152426108718
+epoch 68, minibatch 500/500, test error 15.810000 %
+training @ iter =  34000
+0.111697256565
+training @ iter =  34100
+0.101592212915
+training @ iter =  34200
+0.112964041531
+training @ iter =  34300
+0.0850374624133
+training @ iter =  34400
+0.058340921998
+epoch 69, minibatch 500/500, test error 15.530000 %
+training @ iter =  34500
+0.198418900371
+training @ iter =  34600
+0.0579310506582
+training @ iter =  34700
+0.0688130706549
+training @ iter =  34800
+0.0366687588394
+training @ iter =  34900
+0.038304630667
+epoch 70, minibatch 500/500, test error 14.680000 %
+training @ iter =  35000
+0.117148302495
+training @ iter =  35100
+0.0605100244284
+training @ iter =  35200
+0.0881076753139
+training @ iter =  35300
+0.0965118408203
+training @ iter =  35400
+0.0324013419449
+epoch 71, minibatch 500/500, test error 16.090000 %
+training @ iter =  35500
+0.0510542206466
+training @ iter =  35600
+0.10095615685
+training @ iter =  35700
+0.0939994826913
+training @ iter =  35800
+0.0845628902316
+training @ iter =  35900
+0.0169773288071
+epoch 72, minibatch 500/500, test error 15.270000 %
+training @ iter =  36000
+0.0736907050014
+training @ iter =  36100
+0.0469737239182
+training @ iter =  36200
+0.159235790372
+training @ iter =  36300
+0.0505372323096
+training @ iter =  36400
+0.0643143951893
+epoch 73, minibatch 500/500, test error 15.390000 %
+training @ iter =  36500
+0.0810194984078
+training @ iter =  36600
+0.0667595788836
+training @ iter =  36700
+0.136243313551
+training @ iter =  36800
+0.0744336545467
+training @ iter =  36900
+0.0266220849007
+epoch 74, minibatch 500/500, test error 15.100000 %
+training @ iter =  37000
+0.0383211933076
+training @ iter =  37100
+0.0556980855763
+training @ iter =  37200
+0.076433993876
+training @ iter =  37300
+0.0208604242653
+training @ iter =  37400
+0.0932803750038
+epoch 75, minibatch 500/500, test error 15.230000 %
+training @ iter =  37500
+0.0306881759316
+training @ iter =  37600
+0.0693450272083
+training @ iter =  37700
+0.0354452244937
+training @ iter =  37800
+0.0788087770343
+training @ iter =  37900
+0.0680552423
+epoch 76, minibatch 500/500, test error 15.540000 %
+training @ iter =  38000
+0.0486953258514
+training @ iter =  38100
+0.0497172623873
+training @ iter =  38200
+0.0647102147341
+training @ iter =  38300
+0.0428893566132
+training @ iter =  38400
+0.026754245162
+epoch 77, minibatch 500/500, test error 15.690000 %
+training @ iter =  38500
+0.0477558895946
+training @ iter =  38600
+0.131028696895
+training @ iter =  38700
+0.0748024061322
+training @ iter =  38800
+0.0626143291593
+training @ iter =  38900
+0.0492655336857
+epoch 78, minibatch 500/500, test error 16.610000 %
+training @ iter =  39000
+0.0631526857615
+training @ iter =  39100
+0.0731716603041
+training @ iter =  39200
+0.0272443387657
+training @ iter =  39300
+0.0224656350911
+training @ iter =  39400
+0.112953044474
+epoch 79, minibatch 500/500, test error 16.060000 %
+training @ iter =  39500
+0.115013062954
+training @ iter =  39600
+0.0637006536126
+training @ iter =  39700
+0.0466458648443
+training @ iter =  39800
+0.0729844272137
+training @ iter =  39900
+0.0316723361611
+epoch 80, minibatch 500/500, test error 16.490000 %
+training @ iter =  40000
+0.174329802394
+training @ iter =  40100
+0.0952323377132
+training @ iter =  40200
+0.10513638705
+training @ iter =  40300
+0.111477486789
+training @ iter =  40400
+0.0298944190145
+epoch 81, minibatch 500/500, test error 16.470000 %
+training @ iter =  40500
+0.0481104180217
+training @ iter =  40600
+0.0295542888343
+training @ iter =  40700
+0.0636660978198
+training @ iter =  40800
+0.0967832654715
+training @ iter =  40900
+0.074605114758
+epoch 82, minibatch 500/500, test error 15.700000 %
+training @ iter =  41000
+0.0488070473075
+training @ iter =  41100
+0.0209367889911
+training @ iter =  41200
+0.0814590677619
+training @ iter =  41300
+0.0787951722741
+training @ iter =  41400
+0.112709656358
+epoch 83, minibatch 500/500, test error 16.000000 %
+training @ iter =  41500
+0.0678532719612
+training @ iter =  41600
+0.0951983630657
+training @ iter =  41700
+0.0757759511471
+training @ iter =  41800
+0.0738398358226
+training @ iter =  41900
+0.0166296958923
+epoch 84, minibatch 500/500, test error 15.400000 %
+training @ iter =  42000
+0.0766918212175
+training @ iter =  42100
+0.0348394140601
+training @ iter =  42200
+0.095559194684
+training @ iter =  42300
+0.0371054038405
+training @ iter =  42400
+0.0635791271925
+epoch 85, minibatch 500/500, test error 15.920000 %
+training @ iter =  42500
+0.0520806759596
+training @ iter =  42600
+0.109859578311
+training @ iter =  42700
+0.0422233343124
+training @ iter =  42800
+0.0555479824543
+training @ iter =  42900
+0.0486845336854
+epoch 86, minibatch 500/500, test error 15.790000 %
+training @ iter =  43000
+0.127631276846
+training @ iter =  43100
+0.0271143689752
+training @ iter =  43200
+0.0549411140382
+training @ iter =  43300
+0.0591613426805
+training @ iter =  43400
+0.0814602375031
+epoch 87, minibatch 500/500, test error 15.000000 %
+training @ iter =  43500
+0.0544271506369
+training @ iter =  43600
+0.0614176690578
+training @ iter =  43700
+0.0733136236668
+training @ iter =  43800
+0.0924885943532
+training @ iter =  43900
+0.0286695845425
+epoch 88, minibatch 500/500, test error 15.500000 %
+training @ iter =  44000
+0.0585832223296
+training @ iter =  44100
+0.0578937679529
+training @ iter =  44200
+0.0456203967333
+training @ iter =  44300
+0.0637098997831
+training @ iter =  44400
+0.0156717132777
+epoch 89, minibatch 500/500, test error 15.650000 %
+training @ iter =  44500
+0.0259156227112
+training @ iter =  44600
+0.0565257258713
+training @ iter =  44700
+0.0729280039668
+training @ iter =  44800
+0.0657194927335
+training @ iter =  44900
+0.0238399077207
+epoch 90, minibatch 500/500, test error 15.760000 %
+training @ iter =  45000
+0.100410096347
+training @ iter =  45100
+0.0671268180013
+training @ iter =  45200
+0.0497341901064
+training @ iter =  45300
+0.0455003120005
+training @ iter =  45400
+0.059858083725
+epoch 91, minibatch 500/500, test error 16.010000 %
+training @ iter =  45500
+0.131494134665
+training @ iter =  45600
+0.0647309422493
+training @ iter =  45700
+0.0874383077025
+training @ iter =  45800
+0.0118075152859
+training @ iter =  45900
+0.00843346863985
+epoch 92, minibatch 500/500, test error 15.930000 %
+training @ iter =  46000
+0.0267731919885
+training @ iter =  46100
+0.10817810148
+training @ iter =  46200
+0.0561747588217
+training @ iter =  46300
+0.033619210124
+training @ iter =  46400
+0.118430264294
+epoch 93, minibatch 500/500, test error 15.380000 %
+training @ iter =  46500
+0.0561211109161
+training @ iter =  46600
+0.0778945311904
+training @ iter =  46700
+0.0659521222115
+training @ iter =  46800
+0.139615625143
+training @ iter =  46900
+0.0466290265322
+epoch 94, minibatch 500/500, test error 15.610000 %
+training @ iter =  47000
+0.179669186473
+training @ iter =  47100
+0.110893495381
+training @ iter =  47200
+0.104718074203
+training @ iter =  47300
+0.0439393483102
+training @ iter =  47400
+0.0315349586308
+epoch 95, minibatch 500/500, test error 16.490000 %
+training @ iter =  47500
+0.0225043743849
+training @ iter =  47600
+0.257369488478
+training @ iter =  47700
+0.0913575813174
+training @ iter =  47800
+0.0329489931464
+training @ iter =  47900
+0.0774704068899
+epoch 96, minibatch 500/500, test error 15.610000 %
+training @ iter =  48000
+0.0399280972779
+training @ iter =  48100
+0.0373234041035
+training @ iter =  48200
+0.038782376796
+training @ iter =  48300
+0.0195379443467
+training @ iter =  48400
+0.0291855707765
+epoch 97, minibatch 500/500, test error 15.710000 %
+training @ iter =  48500
+0.0268425066024
+training @ iter =  48600
+0.0596117936075
+training @ iter =  48700
+0.0493081659079
+training @ iter =  48800
+0.0294515043497
+training @ iter =  48900
+0.0767619609833
+epoch 98, minibatch 500/500, test error 15.130000 %
+training @ iter =  49000
+0.0462493225932
+training @ iter =  49100
+0.0344649776816
+training @ iter =  49200
+0.0358394645154
+training @ iter =  49300
+0.0277210585773
+training @ iter =  49400
+0.0919305160642
+epoch 99, minibatch 500/500, test error 15.610000 %
+training @ iter =  49500
+0.131885945797
+training @ iter =  49600
+0.0529631413519
+training @ iter =  49700
+0.0230876151472
+training @ iter =  49800
+0.155017390847
+training @ iter =  49900
+0.120866447687
+epoch 100, minibatch 500/500, test error 15.470000 %
+training @ iter =  50000
+0.0391943641007
+training @ iter =  50100
+0.106272876263
+training @ iter =  50200
+0.0587008669972
+training @ iter =  50300
+0.0303405616432
+training @ iter =  50400
+0.033002525568
+epoch 101, minibatch 500/500, test error 15.380000 %
+training @ iter =  50500
+0.0910558030009
+training @ iter =  50600
+0.0730652138591
+training @ iter =  50700
+0.146797671914
+training @ iter =  50800
+0.112694442272
+training @ iter =  50900
+0.0263832267374
+epoch 102, minibatch 500/500, test error 15.320000 %
+training @ iter =  51000
+0.0524953939021
+training @ iter =  51100
+0.0249396879226
+training @ iter =  51200
+0.0575993023813
+training @ iter =  51300
+0.0401300340891
+training @ iter =  51400
+0.0236163027585
+epoch 103, minibatch 500/500, test error 16.300000 %
+training @ iter =  51500
+0.102493025362
+training @ iter =  51600
+0.0379365198314
+training @ iter =  51700
+0.031466756016
+training @ iter =  51800
+0.0683800056577
+training @ iter =  51900
+0.101096972823
+epoch 104, minibatch 500/500, test error 15.430000 %
+training @ iter =  52000
+0.076493665576
+training @ iter =  52100
+0.0429672449827
+training @ iter =  52200
+0.0274604745209
+training @ iter =  52300
+0.0288686901331
+training @ iter =  52400
+0.0321890823543
+epoch 105, minibatch 500/500, test error 15.510000 %
+training @ iter =  52500
+0.0763135924935
+training @ iter =  52600
+0.0508612394333
+training @ iter =  52700
+0.0355152711272
+training @ iter =  52800
+0.0506333000958
+training @ iter =  52900
+0.0116824768484
+epoch 106, minibatch 500/500, test error 15.150000 %
+training @ iter =  53000
+0.0985866710544
+training @ iter =  53100
+0.0351093374193
+training @ iter =  53200
+0.0615608021617
+training @ iter =  53300
+0.0537836514413
+training @ iter =  53400
+0.00655584502965
+epoch 107, minibatch 500/500, test error 15.250000 %
+training @ iter =  53500
+0.062426969409
+training @ iter =  53600
+0.0780467912555
+training @ iter =  53700
+0.0218358300626
+training @ iter =  53800
+0.0193883925676
+training @ iter =  53900
+0.0589620396495
+epoch 108, minibatch 500/500, test error 15.600000 %
+training @ iter =  54000
+0.079388268292
+training @ iter =  54100
+0.00837359763682
+training @ iter =  54200
+0.0335951857269
+training @ iter =  54300
+0.0076987715438
+training @ iter =  54400
+0.0110188536346
+epoch 109, minibatch 500/500, test error 16.130000 %
+training @ iter =  54500
+0.0346653945744
+training @ iter =  54600
+0.0414501614869
+training @ iter =  54700
+0.0797499194741
+training @ iter =  54800
+0.0864834412932
+training @ iter =  54900
+0.038602527231
+epoch 110, minibatch 500/500, test error 15.450000 %
+training @ iter =  55000
+0.0297330785543
+training @ iter =  55100
+0.0267863925546
+training @ iter =  55200
+0.0116028450429
+training @ iter =  55300
+0.0507133565843
+training @ iter =  55400
+0.00581642379984
+epoch 111, minibatch 500/500, test error 15.260000 %
+training @ iter =  55500
+0.0242126900703
+training @ iter =  55600
+0.0464083105326
+training @ iter =  55700
+0.0222568418831
+training @ iter =  55800
+0.021995363757
+training @ iter =  55900
+0.14614662528
+epoch 112, minibatch 500/500, test error 15.350000 %
+training @ iter =  56000
+0.0339779444039
+training @ iter =  56100
+0.0230865571648
+training @ iter =  56200
+0.10465849936
+training @ iter =  56300
+0.0965991616249
+training @ iter =  56400
+0.0413005053997
+epoch 113, minibatch 500/500, test error 17.430000 %
+training @ iter =  56500
+0.0405844300985
+training @ iter =  56600
+0.0975629240274
+training @ iter =  56700
+0.00814966205508
+training @ iter =  56800
+0.0484782084823
+training @ iter =  56900
+0.0305852033198
+epoch 114, minibatch 500/500, test error 15.870000 %
+training @ iter =  57000
+0.0507561154664
+training @ iter =  57100
+0.0214430745691
+training @ iter =  57200
+0.0371913202107
+training @ iter =  57300
+0.0527669750154
+training @ iter =  57400
+0.0499990433455
+epoch 115, minibatch 500/500, test error 14.990000 %
+training @ iter =  57500
+0.0726683586836
+training @ iter =  57600
+0.00320384046063
+training @ iter =  57700
+0.0686011761427
+training @ iter =  57800
+0.0655374452472
+training @ iter =  57900
+0.00421787519008
+epoch 116, minibatch 500/500, test error 15.720000 %
+training @ iter =  58000
+0.0463143736124
+training @ iter =  58100
+0.0596623420715
+training @ iter =  58200
+0.0287315826863
+training @ iter =  58300
+0.0273328665644
+training @ iter =  58400
+0.0457772836089
+epoch 117, minibatch 500/500, test error 15.350000 %
+training @ iter =  58500
+0.0234501883388
+training @ iter =  58600
+0.0262464806437
+training @ iter =  58700
+0.0426126755774
+training @ iter =  58800
+0.0479057580233
+training @ iter =  58900
+0.0482007302344
+epoch 118, minibatch 500/500, test error 15.120000 %
+training @ iter =  59000
+0.0211859606206
+training @ iter =  59100
+0.0097429798916
+training @ iter =  59200
+0.0211145300418
+training @ iter =  59300
+0.0122587252408
+training @ iter =  59400
+0.0436892397702
+epoch 119, minibatch 500/500, test error 15.690000 %
+training @ iter =  59500
+0.0761619731784
+training @ iter =  59600
+0.126623570919
+training @ iter =  59700
+0.07262596488
+training @ iter =  59800
+0.051125716418
+training @ iter =  59900
+0.0160704106092
+epoch 120, minibatch 500/500, test error 15.940000 %
+training @ iter =  60000
+0.00485989404842
+training @ iter =  60100
+0.0405614152551
+training @ iter =  60200
+0.0164486244321
+training @ iter =  60300
+0.0306271910667
+training @ iter =  60400
+0.0326679460704
+epoch 121, minibatch 500/500, test error 15.050000 %
+training @ iter =  60500
+0.0287747643888
+training @ iter =  60600
+0.0345963053405
+training @ iter =  60700
+0.0483221970499
+training @ iter =  60800
+0.016331538558
+training @ iter =  60900
+0.064408890903
+epoch 122, minibatch 500/500, test error 15.170000 %
+training @ iter =  61000
+0.0416613593698
+training @ iter =  61100
+0.0279142782092
+training @ iter =  61200
+0.0446278303862
+training @ iter =  61300
+0.0073084984906
+training @ iter =  61400
+0.00548702850938
+epoch 123, minibatch 500/500, test error 15.520000 %
+training @ iter =  61500
+0.057660728693
+training @ iter =  61600
+0.0207125358284
+training @ iter =  61700
+0.0920621678233
+training @ iter =  61800
+0.0342637300491
+training @ iter =  61900
+0.0307629294693
+epoch 124, minibatch 500/500, test error 15.800000 %
+training @ iter =  62000
+0.0617816336453
+training @ iter =  62100
+0.0973446294665
+training @ iter =  62200
+0.0514954812825
+training @ iter =  62300
+0.0375552922487
+training @ iter =  62400
+0.0291827302426
+epoch 125, minibatch 500/500, test error 16.020000 %
+training @ iter =  62500
+0.0111169768497
+training @ iter =  62600
+0.0235240031034
+training @ iter =  62700
+0.0107595808804
+training @ iter =  62800
+0.0448966771364
+training @ iter =  62900
+0.0488244332373
+epoch 126, minibatch 500/500, test error 15.670000 %
+training @ iter =  63000
+0.0580604188144
+training @ iter =  63100
+0.0424276478589
+training @ iter =  63200
+0.0329534560442
+training @ iter =  63300
+0.0355882756412
+training @ iter =  63400
+0.0614174753428
+epoch 127, minibatch 500/500, test error 16.400000 %
+training @ iter =  63500
+0.0953581556678
+training @ iter =  63600
+0.0243544634432
+training @ iter =  63700
+0.0344013385475
+training @ iter =  63800
+0.0262951664627
+training @ iter =  63900
+0.0117259798571
+epoch 128, minibatch 500/500, test error 15.970000 %
+training @ iter =  64000
+0.0617689229548
+training @ iter =  64100
+0.0215578693897
+training @ iter =  64200
+0.0600136369467
+training @ iter =  64300
+0.0245327372104
+training @ iter =  64400
+0.0100576449186
+epoch 129, minibatch 500/500, test error 15.670000 %
+training @ iter =  64500
+0.138621255755
+training @ iter =  64600
+0.0190299395472
+training @ iter =  64700
+0.0275619570166
+training @ iter =  64800
+0.013191905804
+training @ iter =  64900
+0.0199291650206
+epoch 130, minibatch 500/500, test error 16.790000 %
+training @ iter =  65000
+0.0486350543797
+training @ iter =  65100
+0.0136088943109
+training @ iter =  65200
+0.027437414974
+training @ iter =  65300
+0.0297085903585
+training @ iter =  65400
+0.0430694483221
+epoch 131, minibatch 500/500, test error 16.200000 %
+training @ iter =  65500
+0.0707310140133
+training @ iter =  65600
+0.0196317173541
+training @ iter =  65700
+0.043893199414
+training @ iter =  65800
+0.0139456745237
+training @ iter =  65900
+0.00584217673168
+epoch 132, minibatch 500/500, test error 15.740000 %
+training @ iter =  66000
+0.0108032114804
+training @ iter =  66100
+0.0931875631213
+training @ iter =  66200
+0.0133491996676
+training @ iter =  66300
+0.0159804727882
+training @ iter =  66400
+0.00895157456398
+epoch 133, minibatch 500/500, test error 15.440000 %
+training @ iter =  66500
+0.00978843122721
+training @ iter =  66600
+0.015572713688
+training @ iter =  66700
+0.059278935194
+training @ iter =  66800
+0.076380930841
+training @ iter =  66900
+0.00776098109782
+epoch 134, minibatch 500/500, test error 15.440000 %
+training @ iter =  67000
+0.0392865985632
+training @ iter =  67100
+0.0882415100932
+training @ iter =  67200
+0.0504794679582
+training @ iter =  67300
+0.0231349244714
+training @ iter =  67400
+0.0996416285634
+epoch 135, minibatch 500/500, test error 16.120000 %
+training @ iter =  67500
+0.00618725363165
+training @ iter =  67600
+0.0408008135855
+training @ iter =  67700
+0.0125723555684
+training @ iter =  67800
+0.0314235463738
+training @ iter =  67900
+0.0390504784882
+epoch 136, minibatch 500/500, test error 16.470000 %
+training @ iter =  68000
+0.0266880560666
+training @ iter =  68100
+0.0105267176405
+training @ iter =  68200
+0.0578958429396
+training @ iter =  68300
+0.00990601442754
+training @ iter =  68400
+0.0517123788595
+epoch 137, minibatch 500/500, test error 15.460000 %
+training @ iter =  68500
+0.00532314972952
+training @ iter =  68600
+0.0617185123265
+training @ iter =  68700
+0.0256855543703
+training @ iter =  68800
+0.0368762165308
+training @ iter =  68900
+0.0263576935977
+epoch 138, minibatch 500/500, test error 15.050000 %
+training @ iter =  69000
+0.00825850386173
+training @ iter =  69100
+0.0109685631469
+training @ iter =  69200
+0.0131251430139
+training @ iter =  69300
+0.0734539851546
+training @ iter =  69400
+0.0484833940864
+epoch 139, minibatch 500/500, test error 16.060000 %
+training @ iter =  69500
+0.00550353666767
+training @ iter =  69600
+0.0631869286299
+training @ iter =  69700
+0.0711266696453
+training @ iter =  69800
+0.0274622924626
+training @ iter =  69900
+0.109290286899
+epoch 140, minibatch 500/500, test error 16.350000 %
+training @ iter =  70000
+0.0675264745951
+training @ iter =  70100
+0.0134076392278
+training @ iter =  70200
+0.0663499608636
+training @ iter =  70300
+0.0558693520725
+training @ iter =  70400
+0.0371137224138
+epoch 141, minibatch 500/500, test error 16.530000 %
+training @ iter =  70500
+0.0282649118453
+training @ iter =  70600
+0.0386912599206
+training @ iter =  70700
+0.0616371110082
+training @ iter =  70800
+0.0145645271987
+training @ iter =  70900
+0.0422768294811
+epoch 142, minibatch 500/500, test error 16.730000 %
+training @ iter =  71000
+0.0691111311316
+training @ iter =  71100
+0.024498142302
+training @ iter =  71200
+0.0189619548619
+training @ iter =  71300
+0.0210386961699
+training @ iter =  71400
+0.0117622856051
+epoch 143, minibatch 500/500, test error 15.230000 %
+training @ iter =  71500
+0.0249661114067
+training @ iter =  71600
+0.0235980562866
+training @ iter =  71700
+0.00980104785413
+training @ iter =  71800
+0.0749745592475
+training @ iter =  71900
+0.0130676170811
+epoch 144, minibatch 500/500, test error 16.930000 %
+training @ iter =  72000
+0.0674251168966
+training @ iter =  72100
+0.0584968663752
+training @ iter =  72200
+0.0232979916036
+training @ iter =  72300
+0.00809303391725
+training @ iter =  72400
+0.0688047111034
+epoch 145, minibatch 500/500, test error 15.550000 %
+training @ iter =  72500
+0.0137764429674
+training @ iter =  72600
+0.0601885765791
+training @ iter =  72700
+0.00599280931056
+training @ iter =  72800
+0.0204283874482
+training @ iter =  72900
+0.0128596797585
+epoch 146, minibatch 500/500, test error 16.460000 %
+training @ iter =  73000
+0.0205774828792
+training @ iter =  73100
+0.044452033937
+training @ iter =  73200
+0.0318914689124
+training @ iter =  73300
+0.0248770397156
+training @ iter =  73400
+0.0216104611754
+epoch 147, minibatch 500/500, test error 15.120000 %
+training @ iter =  73500
+0.0229395050555
+training @ iter =  73600
+0.0473169311881
+training @ iter =  73700
+0.035063687712
+training @ iter =  73800
+0.0106766298413
+training @ iter =  73900
+0.0967865586281
+epoch 148, minibatch 500/500, test error 16.180000 %
+training @ iter =  74000
+0.0233695358038
+training @ iter =  74100
+0.0842811614275
+training @ iter =  74200
+0.0604329779744
+training @ iter =  74300
+0.0925848186016
+training @ iter =  74400
+0.011744774878
+epoch 149, minibatch 500/500, test error 16.240000 %
+training @ iter =  74500
+0.0100066876039
+training @ iter =  74600
+0.00950330216438
+training @ iter =  74700
+0.0620252378285
+training @ iter =  74800
+0.0476953685284
+training @ iter =  74900
+0.0788628235459
+epoch 150, minibatch 500/500, test error 15.710000 %
+training @ iter =  75000
+0.020231436938
+training @ iter =  75100
+0.091737575829
+training @ iter =  75200
+0.00746074551716
+training @ iter =  75300
+0.0410494245589
+training @ iter =  75400
+0.0201258808374
+epoch 151, minibatch 500/500, test error 15.330000 %
+training @ iter =  75500
+0.107552319765
+training @ iter =  75600
+0.00639568967745
+training @ iter =  75700
+0.0359416007996
+training @ iter =  75800
+0.0106619047001
+training @ iter =  75900
+0.0599301382899
+epoch 152, minibatch 500/500, test error 16.060000 %
+training @ iter =  76000
+0.0963544249535
+training @ iter =  76100
+0.00350149325095
+training @ iter =  76200
+0.036876283586
+training @ iter =  76300
+0.0247855186462
+training @ iter =  76400
+0.00280367885716
+epoch 153, minibatch 500/500, test error 15.220000 %
+training @ iter =  76500
+0.124372199178
+training @ iter =  76600
+0.0172465909272
+training @ iter =  76700
+0.0432482510805
+training @ iter =  76800
+0.0333058163524
+training @ iter =  76900
+0.038998182863
+epoch 154, minibatch 500/500, test error 15.870000 %
+training @ iter =  77000
+0.00460588885471
+training @ iter =  77100
+0.0441756993532
+training @ iter =  77200
+0.0415377952158
+training @ iter =  77300
+0.00645049475133
+training @ iter =  77400
+0.0195075739175
+epoch 155, minibatch 500/500, test error 15.610000 %
+training @ iter =  77500
+0.0277545116842
+training @ iter =  77600
+0.0306949671358
+training @ iter =  77700
+0.0475528612733
+training @ iter =  77800
+0.0224626250565
+training @ iter =  77900
+0.0542368218303
+epoch 156, minibatch 500/500, test error 16.440000 %
+training @ iter =  78000
+0.0570403300226
+training @ iter =  78100
+0.0225062966347
+training @ iter =  78200
+0.0353133566678
+training @ iter =  78300
+0.0116328550503
+training @ iter =  78400
+0.00940269511193
+epoch 157, minibatch 500/500, test error 15.510000 %
+training @ iter =  78500
+0.00832390971482
+training @ iter =  78600
+0.0242413189262
+training @ iter =  78700
+0.0152029739693
+training @ iter =  78800
+0.0885474905372
+training @ iter =  78900
+0.0371651090682
+epoch 158, minibatch 500/500, test error 15.690000 %
+training @ iter =  79000
+0.0132368961349
+training @ iter =  79100
+0.0047706598416
+training @ iter =  79200
+0.0395389311016
+training @ iter =  79300
+0.0139833567664
+training @ iter =  79400
+0.0464287474751
+epoch 159, minibatch 500/500, test error 15.550000 %
+training @ iter =  79500
+0.00805035699159
+training @ iter =  79600
+0.032077241689
+training @ iter =  79700
+0.0588068440557
+training @ iter =  79800
+0.0476372614503
+training @ iter =  79900
+0.00783698353916
+epoch 160, minibatch 500/500, test error 15.850000 %
+training @ iter =  80000
+0.0121788894758
+training @ iter =  80100
+0.0148940598592
+training @ iter =  80200
+0.0280553437769
+training @ iter =  80300
+0.0272177029401
+training @ iter =  80400
+0.0197176523507
+epoch 161, minibatch 500/500, test error 17.720000 %
+training @ iter =  80500
+0.0185127034783
+training @ iter =  80600
+0.0363087356091
+training @ iter =  80700
+0.00353062083013
+training @ iter =  80800
+0.0790353268385
+training @ iter =  80900
+0.0216050259769
+epoch 162, minibatch 500/500, test error 17.160000 %
+training @ iter =  81000
+0.0493903718889
+training @ iter =  81100
+0.00780545780435
+training @ iter =  81200
+0.00446742633358
+training @ iter =  81300
+0.00868430268019
+training @ iter =  81400
+0.0189312063158
+epoch 163, minibatch 500/500, test error 16.060000 %
+training @ iter =  81500
+0.00853334181011
+training @ iter =  81600
+0.0144860651344
+training @ iter =  81700
+0.0185749977827
+training @ iter =  81800
+0.0180955287069
+training @ iter =  81900
+0.0155949452892
+epoch 164, minibatch 500/500, test error 15.130000 %
+training @ iter =  82000
+0.087294690311
+training @ iter =  82100
+0.017988640815
+training @ iter =  82200
+0.00893705897033
+training @ iter =  82300
+0.0296256486326
+training @ iter =  82400
+0.00670807994902
+epoch 165, minibatch 500/500, test error 15.500000 %
+training @ iter =  82500
+0.0454437956214
+training @ iter =  82600
+0.0173119921237
+training @ iter =  82700
+0.00934814382344
+training @ iter =  82800
+0.0239736493677
+training @ iter =  82900
+0.0315622910857
+epoch 166, minibatch 500/500, test error 15.270000 %
+training @ iter =  83000
+0.054702270776
+training @ iter =  83100
+0.00700503960252
+training @ iter =  83200
+0.0297345537692
+training @ iter =  83300
+0.0206227079034
+training @ iter =  83400
+0.046437650919
+epoch 167, minibatch 500/500, test error 15.860000 %
+training @ iter =  83500
+0.0116320420057
+training @ iter =  83600
+0.0925590097904
+training @ iter =  83700
+0.021759942174
+training @ iter =  83800
+0.00957396719605
+training @ iter =  83900
+0.00614767801017
+epoch 168, minibatch 500/500, test error 15.630000 %
+training @ iter =  84000
+0.027763357386
+training @ iter =  84100
+0.0858895853162
+training @ iter =  84200
+0.00553802214563
+training @ iter =  84300
+0.0227063838392
+training @ iter =  84400
+0.0271822661161
+epoch 169, minibatch 500/500, test error 16.100000 %
+training @ iter =  84500
+0.00761435227469
+training @ iter =  84600
+0.0106820976362
+training @ iter =  84700
+0.0431050918996
+training @ iter =  84800
+0.00814280100167
+training @ iter =  84900
+0.0342855118215
+epoch 170, minibatch 500/500, test error 15.920000 %
+training @ iter =  85000
+0.0316135548055
+training @ iter =  85100
+0.0455660633743
+training @ iter =  85200
+0.0474472269416
+training @ iter =  85300
+0.0414593331516
+training @ iter =  85400
+0.0280843451619
+epoch 171, minibatch 500/500, test error 15.430000 %
+training @ iter =  85500
+0.0854133665562
+training @ iter =  85600
+0.00647077616304
+training @ iter =  85700
+0.00399172166362
+training @ iter =  85800
+0.0180938988924
+training @ iter =  85900
+0.0207067541778
+epoch 172, minibatch 500/500, test error 15.700000 %
+training @ iter =  86000
+0.0145183363929
+training @ iter =  86100
+0.00570729980245
+training @ iter =  86200
+0.00799299404025
+training @ iter =  86300
+0.0433507636189
+training @ iter =  86400
+0.0193604510278
+epoch 173, minibatch 500/500, test error 16.260000 %
+training @ iter =  86500
+0.071518138051
+training @ iter =  86600
+0.0121890641749
+training @ iter =  86700
+0.0402341857553
+training @ iter =  86800
+0.0766871720552
+training @ iter =  86900
+0.00904878415167
+epoch 174, minibatch 500/500, test error 15.160000 %
+training @ iter =  87000
+0.0584264621139
+training @ iter =  87100
+0.0134427547455
+training @ iter =  87200
+0.0238921493292
+training @ iter =  87300
+0.0402586571872
+training @ iter =  87400
+0.0205811802298
+epoch 175, minibatch 500/500, test error 15.410000 %
+training @ iter =  87500
+0.0123727237806
+training @ iter =  87600
+0.0654380396008
+training @ iter =  87700
+0.0386832505465
+training @ iter =  87800
+0.0167258772999
+training @ iter =  87900
+0.093608379364
+epoch 176, minibatch 500/500, test error 15.520000 %
+training @ iter =  88000
+0.0486435778439
+training @ iter =  88100
+0.0160737950355
+training @ iter =  88200
+0.0190879367292
+training @ iter =  88300
+0.0223814602941
+training @ iter =  88400
+0.00913860183209
+epoch 177, minibatch 500/500, test error 15.300000 %
+training @ iter =  88500
+0.00623408379033
+training @ iter =  88600
+0.0800507739186
+training @ iter =  88700
+0.0900022983551
+training @ iter =  88800
+0.0135879982263
+training @ iter =  88900
+0.0449855104089
+epoch 178, minibatch 500/500, test error 15.890000 %
+training @ iter =  89000
+0.0453923605382
+training @ iter =  89100
+0.0174226686358
+training @ iter =  89200
+0.0126657532528
+training @ iter =  89300
+0.0224326774478
+training @ iter =  89400
+0.0214524958283
+epoch 179, minibatch 500/500, test error 15.430000 %
+training @ iter =  89500
+0.0326660126448
+training @ iter =  89600
+0.0158743076026
+training @ iter =  89700
+0.0211807992309
+training @ iter =  89800
+0.035869076848
+training @ iter =  89900
+0.0126735614613
+epoch 180, minibatch 500/500, test error 16.690000 %
+training @ iter =  90000
+0.00264496449381
+training @ iter =  90100
+0.0120464721695
+training @ iter =  90200
+0.0071896482259
+training @ iter =  90300
+0.0391032919288
+training @ iter =  90400
+0.0268317610025
+epoch 181, minibatch 500/500, test error 15.030000 %
+training @ iter =  90500
+0.0160382315516
+training @ iter =  90600
+0.0204104278237
+training @ iter =  90700
+0.0029969222378
+training @ iter =  90800
+0.051247574389
+training @ iter =  90900
+0.00496102590114
+epoch 182, minibatch 500/500, test error 16.490000 %
+training @ iter =  91000
+0.0361680313945
+training @ iter =  91100
+0.00796745531261
+training @ iter =  91200
+0.0284255426377
+training @ iter =  91300
+0.0216686204076
+training @ iter =  91400
+0.007896784693
+epoch 183, minibatch 500/500, test error 15.310000 %
+training @ iter =  91500
+0.00722929881886
+training @ iter =  91600
+0.0168549958616
+training @ iter =  91700
+0.0418689027429
+training @ iter =  91800
+0.0321655385196
+training @ iter =  91900
+0.0541617311537
+epoch 184, minibatch 500/500, test error 15.560000 %
+training @ iter =  92000
+0.002058978891
+training @ iter =  92100
+0.00804197881371
+training @ iter =  92200
+0.00315036508255
+training @ iter =  92300
+0.00137792434543
+training @ iter =  92400
+0.00857062544674
+epoch 185, minibatch 500/500, test error 15.800000 %
+training @ iter =  92500
+0.0117154177278
+training @ iter =  92600
+0.0240796208382
+training @ iter =  92700
+0.0142130004242
+training @ iter =  92800
+0.0116255143657
+training @ iter =  92900
+0.02776629664
+epoch 186, minibatch 500/500, test error 15.440000 %
+training @ iter =  93000
+0.0587616823614
+training @ iter =  93100
+0.0135656977072
+training @ iter =  93200
+0.0279811620712
+training @ iter =  93300
+0.00477279443294
+training @ iter =  93400
+0.012630420737
+epoch 187, minibatch 500/500, test error 15.960000 %
+training @ iter =  93500
+0.081281259656
+training @ iter =  93600
+0.00971506163478
+training @ iter =  93700
+0.0946785137057
+training @ iter =  93800
+0.00534543255344
+training @ iter =  93900
+0.0406496152282
+epoch 188, minibatch 500/500, test error 14.930000 %
+training @ iter =  94000
+0.0853194072843
+training @ iter =  94100
+0.00565806310624
+training @ iter =  94200
+0.0782280936837
+training @ iter =  94300
+0.0078189028427
+training @ iter =  94400
+0.0113000748679
+epoch 189, minibatch 500/500, test error 15.430000 %
+training @ iter =  94500
+0.00278756977059
+training @ iter =  94600
+0.00691376021132
+training @ iter =  94700
+0.00572348246351
+training @ iter =  94800
+0.0228541977704
+training @ iter =  94900
+0.00269190687686
+epoch 190, minibatch 500/500, test error 15.190000 %
+training @ iter =  95000
+0.0122575983405
+training @ iter =  95100
+0.00989577919245
+training @ iter =  95200
+0.0157237593085
+training @ iter =  95300
+0.0187336336821
+training @ iter =  95400
+0.000549818563741
+epoch 191, minibatch 500/500, test error 15.500000 %
+training @ iter =  95500
+0.0696152821183
+training @ iter =  95600
+0.0598164685071
+training @ iter =  95700
+0.00165376754012
+training @ iter =  95800
+0.0164908822626
+training @ iter =  95900
+0.0117215821519
+epoch 192, minibatch 500/500, test error 15.600000 %
+training @ iter =  96000
+0.0387374460697
+training @ iter =  96100
+0.0102729145437
+training @ iter =  96200
+0.0224111098796
+training @ iter =  96300
+0.0130150523037
+training @ iter =  96400
+0.0318138487637
+epoch 193, minibatch 500/500, test error 15.660000 %
+training @ iter =  96500
+0.00378944072872
+training @ iter =  96600
+0.0112009234726
+training @ iter =  96700
+0.0238150283694
+training @ iter =  96800
+0.0287145897746
+training @ iter =  96900
+0.0251044798642
+epoch 194, minibatch 500/500, test error 15.400000 %
+training @ iter =  97000
+0.029942009598
+training @ iter =  97100
+0.00517340190709
+training @ iter =  97200
+0.040355168283
+training @ iter =  97300
+0.0448859632015
+training @ iter =  97400
+0.0019639483653
+epoch 195, minibatch 500/500, test error 15.370000 %
+training @ iter =  97500
+0.0410284250975
+training @ iter =  97600
+0.00652550440282
+training @ iter =  97700
+0.0154385818169
+training @ iter =  97800
+0.0232547242194
+training @ iter =  97900
+0.00807796232402
+epoch 196, minibatch 500/500, test error 15.870000 %
+training @ iter =  98000
+0.0834491699934
+training @ iter =  98100
+0.0692781656981
+training @ iter =  98200
+0.0299789290875
+training @ iter =  98300
+0.0225210189819
+training @ iter =  98400
+0.00191523402464
+epoch 197, minibatch 500/500, test error 15.580000 %
+training @ iter =  98500
+0.0549438484013
+training @ iter =  98600
+0.00876459479332
+training @ iter =  98700
+0.0224773138762
+training @ iter =  98800
+0.0280113872141
+training @ iter =  98900
+0.0768228620291
+epoch 198, minibatch 500/500, test error 15.920000 %
+training @ iter =  99000
+0.0218955725431
+training @ iter =  99100
+0.118060797453
+training @ iter =  99200
+0.0543675981462
+training @ iter =  99300
+0.0108188688755
+training @ iter =  99400
+0.00573442829773
+epoch 199, minibatch 500/500, test error 15.810000 %
+training @ iter =  99500
+0.00712578045204
+training @ iter =  99600
+0.0164207592607
+training @ iter =  99700
+0.0142483199015
+training @ iter =  99800
+0.0200455673039
+training @ iter =  99900
+0.0141762876883
+epoch 200, minibatch 500/500, test error 15.650000 %
+training @ iter =  100000
+0.0310267787427
+training @ iter =  100100
+0.0219431202859
+training @ iter =  100200
+0.00256696110591
+training @ iter =  100300
+0.0229392051697
+training @ iter =  100400
+0.00424057617784
+epoch 201, minibatch 500/500, test error 15.350000 %
+training @ iter =  100500
+0.0293738432229
+training @ iter =  100600
+0.0122980261222
+training @ iter =  100700
+0.0402449890971
+training @ iter =  100800
+0.00828899163753
+training @ iter =  100900
+0.0060633928515
+epoch 202, minibatch 500/500, test error 15.320000 %
+training @ iter =  101000
+0.0275364760309
+training @ iter =  101100
+0.042025078088
+training @ iter =  101200
+0.00277297524735
+training @ iter =  101300
+0.0497466437519
+training @ iter =  101400
+0.00569592695683
+epoch 203, minibatch 500/500, test error 15.760000 %
+training @ iter =  101500
+0.00494488887489
+training @ iter =  101600
+0.0332459323108
+training @ iter =  101700
+0.0308814868331
+training @ iter =  101800
+0.0759935602546
+training @ iter =  101900
+0.00154416321311
+epoch 204, minibatch 500/500, test error 15.000000 %
+training @ iter =  102000
+0.00280311773531
+training @ iter =  102100
+0.0190762858838
+training @ iter =  102200
+0.00335021293722
+training @ iter =  102300
+0.000762436480727
+training @ iter =  102400
+0.00656737945974
+epoch 205, minibatch 500/500, test error 15.020000 %
+training @ iter =  102500
+0.00296031590551
+training @ iter =  102600
+0.0019738227129
+training @ iter =  102700
+0.0182872600853
+training @ iter =  102800
+0.00231187231839
+training @ iter =  102900
+0.00805182568729
+epoch 206, minibatch 500/500, test error 14.870000 %
+training @ iter =  103000
+0.0145131507888
+training @ iter =  103100
+0.00282856752165
+training @ iter =  103200
+0.00211722264066
+training @ iter =  103300
+0.00142528256401
+training @ iter =  103400
+0.00155635958072
+epoch 207, minibatch 500/500, test error 14.930000 %
+training @ iter =  103500
+0.00265927705914
+training @ iter =  103600
+0.00842834170908
+training @ iter =  103700
+0.00698790652677
+training @ iter =  103800
+0.0051901252009
+training @ iter =  103900
+0.00543271377683
+epoch 208, minibatch 500/500, test error 14.800000 %
+training @ iter =  104000
+0.00867448560894
+training @ iter =  104100
+0.00171159696765
+training @ iter =  104200
+0.0136446617544
+training @ iter =  104300
+0.0419909581542
+training @ iter =  104400
+0.00175301090349
+epoch 209, minibatch 500/500, test error 15.190000 %
+training @ iter =  104500
+0.00321444263682
+training @ iter =  104600
+0.00248062447645
+training @ iter =  104700
+0.0144436918199
+training @ iter =  104800
+0.00840485747904
+training @ iter =  104900
+0.0495336391032
+epoch 210, minibatch 500/500, test error 15.080000 %
+training @ iter =  105000
+0.0118380747736
+training @ iter =  105100
+0.00251840893179
+training @ iter =  105200
+0.0296603180468
+training @ iter =  105300
+0.00110187893733
+training @ iter =  105400
+0.0537534914911
+epoch 211, minibatch 500/500, test error 15.080000 %
+training @ iter =  105500
+0.000931625021622
+training @ iter =  105600
+0.0252308864146
+training @ iter =  105700
+0.00393924862146
+training @ iter =  105800
+0.0441475249827
+training @ iter =  105900
+0.00395684083924
+epoch 212, minibatch 500/500, test error 15.160000 %
+training @ iter =  106000
+0.00126167375129
+training @ iter =  106100
+0.0634710714221
+training @ iter =  106200
+0.0156151242554
+training @ iter =  106300
+0.000947339751292
+training @ iter =  106400
+0.00628988584504
+epoch 213, minibatch 500/500, test error 15.120000 %
+training @ iter =  106500
+0.0035047782585
+training @ iter =  106600
+0.00587233016267
+training @ iter =  106700
+0.00994215998799
+training @ iter =  106800
+0.0164634454995
+training @ iter =  106900
+0.0145768262446
+epoch 214, minibatch 500/500, test error 15.060000 %
+training @ iter =  107000
+0.00373363401741
+training @ iter =  107100
+0.04031791538
+training @ iter =  107200
+0.00665086088702
+training @ iter =  107300
+0.00967883970588
+training @ iter =  107400
+0.0167662780732
+epoch 215, minibatch 500/500, test error 14.940000 %
+training @ iter =  107500
+0.00113947049249
+training @ iter =  107600
+0.00161819148343
+training @ iter =  107700
+0.00693549774587
+training @ iter =  107800
+0.0138391759247
+training @ iter =  107900
+0.0161576941609
+epoch 216, minibatch 500/500, test error 15.530000 %
+training @ iter =  108000
+0.00252853846177
+training @ iter =  108100
+0.00986159779131
+training @ iter =  108200
+0.0309767313302
+training @ iter =  108300
+0.000865805079229
+training @ iter =  108400
+0.00103813526221
+epoch 217, minibatch 500/500, test error 15.350000 %
+training @ iter =  108500
+0.0321318767965
+training @ iter =  108600
+0.00819280184805
+training @ iter =  108700
+0.00357263884507
+training @ iter =  108800
+0.0222998186946
+training @ iter =  108900
+0.0588471069932
+epoch 218, minibatch 500/500, test error 14.930000 %
+training @ iter =  109000
+0.0263908132911
+training @ iter =  109100
+0.0299790762365
+training @ iter =  109200
+0.0017686780775
+training @ iter =  109300
+0.043370321393
+training @ iter =  109400
+0.0349965132773
+epoch 219, minibatch 500/500, test error 15.240000 %
+training @ iter =  109500
+0.00451017729938
+training @ iter =  109600
+0.00717310560867
+training @ iter =  109700
+0.0274274293333
+training @ iter =  109800
+0.0025096279569
+training @ iter =  109900
+0.0283407978714
+epoch 220, minibatch 500/500, test error 15.210000 %
+training @ iter =  110000
+0.000407191895647
+training @ iter =  110100
+0.00518480874598
+training @ iter =  110200
+0.00264854193665
+training @ iter =  110300
+0.00265305791982
+training @ iter =  110400
+0.0316052027047
+epoch 221, minibatch 500/500, test error 15.190000 %
+training @ iter =  110500
+0.00367575976998
+training @ iter =  110600
+0.0104746827856
+training @ iter =  110700
+0.0142176188529
+training @ iter =  110800
+0.00130989099853
+training @ iter =  110900
+0.0137711688876
+epoch 222, minibatch 500/500, test error 15.010000 %
+training @ iter =  111000
+0.00736631266773
+training @ iter =  111100
+0.0021136731375
+training @ iter =  111200
+0.0135597530752
+training @ iter =  111300
+0.00775821320713
+training @ iter =  111400
+0.0232558753341
+epoch 223, minibatch 500/500, test error 15.020000 %
+training @ iter =  111500
+0.0196198709309
+training @ iter =  111600
+0.0343857854605
+training @ iter =  111700
+0.000956177711487
+training @ iter =  111800
+0.00169765006285
+training @ iter =  111900
+0.0335320606828
+epoch 224, minibatch 500/500, test error 15.320000 %
+training @ iter =  112000
+0.030928676948
+training @ iter =  112100
+0.00557891232893
+training @ iter =  112200
+0.00095246656565
+training @ iter =  112300
+0.00162996677682
+training @ iter =  112400
+0.00178069656249
+epoch 225, minibatch 500/500, test error 15.230000 %
+training @ iter =  112500
+0.0148851657286
+training @ iter =  112600
+0.000134268659167
+training @ iter =  112700
+0.00365808419883
+training @ iter =  112800
+0.00352863757871
+training @ iter =  112900
+0.0420274361968
+epoch 226, minibatch 500/500, test error 15.110000 %
+training @ iter =  113000
+0.0282025150955
+training @ iter =  113100
+0.00741701899096
+training @ iter =  113200
+0.00133706850465
+training @ iter =  113300
+0.0302529074252
+training @ iter =  113400
+0.00207847496495
+epoch 227, minibatch 500/500, test error 15.410000 %
+training @ iter =  113500
+0.0037363958545
+training @ iter =  113600
+0.0142651936039
+training @ iter =  113700
+0.0054636686109
+training @ iter =  113800
+0.00528804352507
+training @ iter =  113900
+0.00711445556954
+epoch 228, minibatch 500/500, test error 15.370000 %
+training @ iter =  114000
+0.000655732234009
+training @ iter =  114100
+0.00024595510331
+training @ iter =  114200
+0.0175012238324
+training @ iter =  114300
+0.0470722727478
+training @ iter =  114400
+0.00214158557355
+epoch 229, minibatch 500/500, test error 15.530000 %
+training @ iter =  114500
+0.0256531666964
+training @ iter =  114600
+0.0115145370364
+training @ iter =  114700
+0.00587345380336
+training @ iter =  114800
+0.00808575376868
+training @ iter =  114900
+0.00372189562768
+epoch 230, minibatch 500/500, test error 15.550000 %
+training @ iter =  115000
+0.000490943901241
+training @ iter =  115100
+0.00323749962263
+training @ iter =  115200
+0.00043649203144
+training @ iter =  115300
+0.00567693822086
+training @ iter =  115400
+0.00530069926754
+epoch 231, minibatch 500/500, test error 15.000000 %
+training @ iter =  115500
+0.0139757720754
+training @ iter =  115600
+0.0013734587701
+training @ iter =  115700
+0.000975113536697
+training @ iter =  115800
+0.000271265394986
+training @ iter =  115900
+0.000427835184382
+epoch 232, minibatch 500/500, test error 15.120000 %
+training @ iter =  116000
+0.0092880083248
+training @ iter =  116100
+0.006230650004
+training @ iter =  116200
+0.00715200835839
+training @ iter =  116300
+0.00513672363013
+training @ iter =  116400
+0.00331867369823
+epoch 233, minibatch 500/500, test error 15.570000 %
+training @ iter =  116500
+0.0123829757795
+training @ iter =  116600
+0.00130166078452
+training @ iter =  116700
+0.013303632848
+training @ iter =  116800
+0.00367374415509
+training @ iter =  116900
+0.0114893177524
+epoch 234, minibatch 500/500, test error 15.050000 %
+training @ iter =  117000
+0.00262313126586
+training @ iter =  117100
+0.00190939439926
+training @ iter =  117200
+0.000918200588785
+training @ iter =  117300
+0.00326829124242
+training @ iter =  117400
+0.00177676219027
+epoch 235, minibatch 500/500, test error 15.170000 %
+training @ iter =  117500
+0.0504620522261
+training @ iter =  117600
+0.000822427100502
+training @ iter =  117700
+0.0111593035981
+training @ iter =  117800
+0.000449026585557
+training @ iter =  117900
+0.00614933948964
+epoch 236, minibatch 500/500, test error 15.310000 %
+training @ iter =  118000
+0.0122285438702
+training @ iter =  118100
+0.00363343209028
+training @ iter =  118200
+0.00126779393759
+training @ iter =  118300
+0.00243201199919
+training @ iter =  118400
+0.00716572860256
+epoch 237, minibatch 500/500, test error 15.100000 %
+training @ iter =  118500
+0.0059871673584
+training @ iter =  118600
+0.00293751247227
+training @ iter =  118700
+0.000310389295919
+training @ iter =  118800
+0.0282632447779
+training @ iter =  118900
+0.00840481650084
+epoch 238, minibatch 500/500, test error 15.360000 %
+training @ iter =  119000
+0.00596876442432
+training @ iter =  119100
+0.00854970794171
+training @ iter =  119200
+0.00136287405621
+training @ iter =  119300
+0.00594166712835
+training @ iter =  119400
+0.0397137589753
+epoch 239, minibatch 500/500, test error 15.070000 %
+training @ iter =  119500
+0.0162349380553
+training @ iter =  119600
+0.00141188828275
+training @ iter =  119700
+0.00240856804885
+training @ iter =  119800
+0.00042081027641
+training @ iter =  119900
+0.00537724141032
+epoch 240, minibatch 500/500, test error 14.840000 %
+training @ iter =  120000
+0.0222632363439
+training @ iter =  120100
+0.0038194602821
+training @ iter =  120200
+0.00193889101502
+training @ iter =  120300
+0.001714199665
+training @ iter =  120400
+0.0636573657393
+epoch 241, minibatch 500/500, test error 14.960000 %
+training @ iter =  120500
+0.00150400202256
+training @ iter =  120600
+0.00937620177865
+training @ iter =  120700
+0.0140561219305
+training @ iter =  120800
+0.0015641762875
+training @ iter =  120900
+0.00351681630127
+epoch 242, minibatch 500/500, test error 15.240000 %
+training @ iter =  121000
+0.00644489983097
+training @ iter =  121100
+0.0203877948225
+training @ iter =  121200
+0.00727989571169
+training @ iter =  121300
+0.0012053058017
+training @ iter =  121400
+0.0278979353607
+epoch 243, minibatch 500/500, test error 15.290000 %
+training @ iter =  121500
+0.000569870870095
+training @ iter =  121600
+0.00529811251909
+training @ iter =  121700
+0.00969317369163
+training @ iter =  121800
+0.0380830653012
+training @ iter =  121900
+0.00511700334027
+epoch 244, minibatch 500/500, test error 15.190000 %
+training @ iter =  122000
+0.000835125450976
+training @ iter =  122100
+0.0197303183377
+training @ iter =  122200
+0.0185163877904
+training @ iter =  122300
+0.00894199032336
+training @ iter =  122400
+0.0169471018016
+epoch 245, minibatch 500/500, test error 15.640000 %
+training @ iter =  122500
+0.00151450489648
+training @ iter =  122600
+0.00358363147825
+training @ iter =  122700
+0.020439863205
+training @ iter =  122800
+0.00947651546448
+training @ iter =  122900
+0.0134358201176
+epoch 246, minibatch 500/500, test error 15.240000 %
+training @ iter =  123000
+0.0241763498634
+training @ iter =  123100
+0.0306785348803
+training @ iter =  123200
+0.0106523763388
+training @ iter =  123300
+0.00955279450864
+training @ iter =  123400
+0.00404217699543
+epoch 247, minibatch 500/500, test error 14.980000 %
+training @ iter =  123500
+0.0147055992857
+training @ iter =  123600
+0.00233035208657
+training @ iter =  123700
+0.00272779283114
+training @ iter =  123800
+0.00604876037687
+training @ iter =  123900
+0.00594460545108
+epoch 248, minibatch 500/500, test error 15.290000 %
+training @ iter =  124000
+0.0557966567576
+training @ iter =  124100
+0.0116536282003
+training @ iter =  124200
+0.00419547175989
+training @ iter =  124300
+0.00270906742662
+training @ iter =  124400
+0.00144506397191
+epoch 249, minibatch 500/500, test error 15.130000 %
+training @ iter =  124500
+0.0016759618884
+training @ iter =  124600
+0.00147611321881
+training @ iter =  124700
+0.000598233775236
+training @ iter =  124800
+0.00969494692981
+training @ iter =  124900
+0.00181788241025
+epoch 250, minibatch 500/500, test error 15.440000 %
+training @ iter =  125000
+0.00205582263879
+training @ iter =  125100
+0.00169130426366
+training @ iter =  125200
+0.0042188949883
+training @ iter =  125300
+0.00449595786631
+training @ iter =  125400
+0.0176727920771
+epoch 251, minibatch 500/500, test error 15.400000 %
+training @ iter =  125500
+0.00184196291957
+training @ iter =  125600
+0.00712673924863
+training @ iter =  125700
+0.00160515145399
+training @ iter =  125800
+0.00321262609214
+training @ iter =  125900
+0.00266995793208
+epoch 252, minibatch 500/500, test error 15.160000 %
+training @ iter =  126000
+0.000622368243057
+training @ iter =  126100
+0.0201287213713
+training @ iter =  126200
+0.0381551645696
+training @ iter =  126300
+0.00233078072779
+training @ iter =  126400
+0.00764328893274
+epoch 253, minibatch 500/500, test error 15.410000 %
+training @ iter =  126500
+0.0436792075634
+training @ iter =  126600
+0.000276331265923
+training @ iter =  126700
+0.0409033596516
+training @ iter =  126800
+0.00463734334335
+training @ iter =  126900
+0.0126617942005
+epoch 254, minibatch 500/500, test error 15.480000 %
+training @ iter =  127000
+0.000233086553635
+training @ iter =  127100
+0.000548897893168
+training @ iter =  127200
+0.00560616748407
+training @ iter =  127300
+0.0189694594592
+training @ iter =  127400
+0.00164543406572
+epoch 255, minibatch 500/500, test error 15.350000 %
+training @ iter =  127500
+0.00335389259271
+training @ iter =  127600
+0.00573081616312
+training @ iter =  127700
+0.0022139037028
+training @ iter =  127800
+0.000787373923231
+training @ iter =  127900
+0.000143951794598
+epoch 256, minibatch 500/500, test error 15.080000 %
+training @ iter =  128000
+0.00645896978676
+training @ iter =  128100
+0.0341026447713
+training @ iter =  128200
+0.00462635001168
+training @ iter =  128300
+0.00681810732931
+training @ iter =  128400
+0.000701244454831
+epoch 257, minibatch 500/500, test error 15.130000 %
+training @ iter =  128500
+0.00384412799031
+training @ iter =  128600
+0.000651981157716
+training @ iter =  128700
+0.00918639916927
+training @ iter =  128800
+0.0284701436758
+training @ iter =  128900
+0.00834731012583
+epoch 258, minibatch 500/500, test error 15.270000 %
+training @ iter =  129000
+0.00243805046193
+training @ iter =  129100
+0.0062190676108
+training @ iter =  129200
+0.0207617040724
+training @ iter =  129300
+0.00717172725126
+training @ iter =  129400
+0.00151877198368
+epoch 259, minibatch 500/500, test error 14.660000 %
+training @ iter =  129500
+0.00270056515001
+training @ iter =  129600
+0.00753654772416
+training @ iter =  129700
+0.00164263765328
+training @ iter =  129800
+0.000518474495038
+training @ iter =  129900
+0.0183603037149
+epoch 260, minibatch 500/500, test error 15.020000 %
+training @ iter =  130000
+0.0416324436665
+training @ iter =  130100
+0.00129160343204
+training @ iter =  130200
+0.0186080541462
+training @ iter =  130300
+0.0014894225169
+training @ iter =  130400
+0.00687539204955
+epoch 261, minibatch 500/500, test error 15.140000 %
+training @ iter =  130500
+0.000897175283171
+training @ iter =  130600
+0.00236447760835
+training @ iter =  130700
+0.000711922359187
+training @ iter =  130800
+0.00533510511741
+training @ iter =  130900
+0.00128435879014
+epoch 262, minibatch 500/500, test error 15.050000 %
+training @ iter =  131000
+0.00174513319507
+training @ iter =  131100
+0.00340292416513
+training @ iter =  131200
+0.00746352924034
+training @ iter =  131300
+0.000394456757931
+training @ iter =  131400
+0.000613670039456
+epoch 263, minibatch 500/500, test error 14.940000 %
+training @ iter =  131500
+0.0373586639762
+training @ iter =  131600
+0.00197275285609
+training @ iter =  131700
+0.0217593312263
+training @ iter =  131800
+0.0374890416861
+training @ iter =  131900
+0.00314655038528
+epoch 264, minibatch 500/500, test error 14.900000 %
+training @ iter =  132000
+0.00495293689892
+training @ iter =  132100
+0.000363517639926
+training @ iter =  132200
+0.000939672347158
+training @ iter =  132300
+0.0143573116511
+training @ iter =  132400
+0.000482679111883
+epoch 265, minibatch 500/500, test error 14.990000 %
+training @ iter =  132500
+0.00878056045622
+training @ iter =  132600
+0.00261763203889
+training @ iter =  132700
+0.00219969800673
+training @ iter =  132800
+0.000499690650031
+training @ iter =  132900
+0.00131120637525
+epoch 266, minibatch 500/500, test error 14.990000 %
+training @ iter =  133000
+0.00410049967468
+training @ iter =  133100
+0.00234722648747
+training @ iter =  133200
+0.000562233384699
+training @ iter =  133300
+0.00310965720564
+training @ iter =  133400
+0.00197277008556
+epoch 267, minibatch 500/500, test error 14.950000 %
+training @ iter =  133500
+0.0026102415286
+training @ iter =  133600
+0.00825483072549
+training @ iter =  133700
+0.00286093959585
+training @ iter =  133800
+0.00063433975447
+training @ iter =  133900
+0.000222365371883
+epoch 268, minibatch 500/500, test error 15.090000 %
+training @ iter =  134000
+0.000410018517869
+training @ iter =  134100
+0.00135944248177
+training @ iter =  134200
+0.000261210429017
+training @ iter =  134300
+0.0166159830987
+training @ iter =  134400
+0.0275051165372
+epoch 269, minibatch 500/500, test error 15.100000 %
+training @ iter =  134500
+0.00494833756238
+training @ iter =  134600
+0.00291493954137
+training @ iter =  134700
+0.011842392385
+training @ iter =  134800
+0.004962624982
+training @ iter =  134900
+0.00211007916369
+epoch 270, minibatch 500/500, test error 15.160000 %
+training @ iter =  135000
+0.00178459647577
+training @ iter =  135100
+0.000416892755311
+training @ iter =  135200
+0.00270685902797
+training @ iter =  135300
+0.0161215569824
+training @ iter =  135400
+0.00147702009417
+epoch 271, minibatch 500/500, test error 15.090000 %
+training @ iter =  135500
+0.0167713332921
+training @ iter =  135600
+0.00458507752046
+training @ iter =  135700
+0.011441946961
+training @ iter =  135800
+0.00342389615253
+training @ iter =  135900
+0.00215368415229
+epoch 272, minibatch 500/500, test error 15.170000 %
+training @ iter =  136000
+0.00155005708802
+training @ iter =  136100
+0.00371955847368
+training @ iter =  136200
+0.000403277925216
+training @ iter =  136300
+0.0010025233496
+training @ iter =  136400
+0.00413998914883
+epoch 273, minibatch 500/500, test error 15.010000 %
+training @ iter =  136500
+0.000549605698325
+training @ iter =  136600
+2.9773776987e-05
+training @ iter =  136700
+0.000735729758162
+training @ iter =  136800
+8.57245904626e-05
+training @ iter =  136900
+0.0021288569551
+epoch 274, minibatch 500/500, test error 15.030000 %
+training @ iter =  137000
+0.0089489268139
+training @ iter =  137100
+0.018949592486
+training @ iter =  137200
+0.0218169018626
+training @ iter =  137300
+0.00120696355589
+training @ iter =  137400
+0.00076902116416
+epoch 275, minibatch 500/500, test error 14.950000 %
+training @ iter =  137500
+0.00456217071041
+training @ iter =  137600
+0.000665000057779
+training @ iter =  137700
+0.0024434174411
+training @ iter =  137800
+0.000965666025877
+training @ iter =  137900
+0.00174468848854
+epoch 276, minibatch 500/500, test error 14.930000 %
+training @ iter =  138000
+0.00293364841491
+training @ iter =  138100
+0.0132755460218
+training @ iter =  138200
+0.00146019633394
+training @ iter =  138300
+0.00311533454806
+training @ iter =  138400
+0.00183858303353
+epoch 277, minibatch 500/500, test error 14.910000 %
+training @ iter =  138500
+0.00272714416496
+training @ iter =  138600
+0.00206256564707
+training @ iter =  138700
+0.000474085478345
+training @ iter =  138800
+0.00391980959103
+training @ iter =  138900
+0.00252512516454
+epoch 278, minibatch 500/500, test error 15.000000 %
+training @ iter =  139000
+0.00245444942266
+training @ iter =  139100
+0.000728460378014
+training @ iter =  139200
+0.0163454227149
+training @ iter =  139300
+0.015380365774
+training @ iter =  139400
+0.00121893244796
+epoch 279, minibatch 500/500, test error 15.040000 %
+training @ iter =  139500
+0.00258878292516
+training @ iter =  139600
+0.0047254296951
+training @ iter =  139700
+0.0079456884414
+training @ iter =  139800
+0.0286713223904
+training @ iter =  139900
+0.00293857697397
+epoch 280, minibatch 500/500, test error 14.990000 %
+training @ iter =  140000
+0.000302750850096
+training @ iter =  140100
+0.00112347293179
+training @ iter =  140200
+0.00413169525564
+training @ iter =  140300
+0.00109383102972
+training @ iter =  140400
+0.000430169166066
+epoch 281, minibatch 500/500, test error 14.950000 %
+training @ iter =  140500
+0.0850450247526
+training @ iter =  140600
+0.00116868654732
+training @ iter =  140700
+0.000368571461877
+training @ iter =  140800
+0.00453089782968
+training @ iter =  140900
+0.00664735445753
+epoch 282, minibatch 500/500, test error 14.980000 %
+training @ iter =  141000
+0.0328495167196
+training @ iter =  141100
+0.0261376947165
+training @ iter =  141200
+0.0542213730514
+training @ iter =  141300
+0.000690545537509
+training @ iter =  141400
+0.000413259258494
+epoch 283, minibatch 500/500, test error 15.040000 %
+training @ iter =  141500
+0.00368145178072
+training @ iter =  141600
+0.0037214178592
+training @ iter =  141700
+0.00346412207
+training @ iter =  141800
+0.00135920953471
+training @ iter =  141900
+0.00976335536689
+epoch 284, minibatch 500/500, test error 14.980000 %
+training @ iter =  142000
+0.00907361228019
+training @ iter =  142100
+0.000439680588897
+training @ iter =  142200
+0.000777155335527
+training @ iter =  142300
+0.0021928132046
+training @ iter =  142400
+0.0233300849795
+epoch 285, minibatch 500/500, test error 15.000000 %
+training @ iter =  142500
+0.00214177486487
+training @ iter =  142600
+0.0210194494575
+training @ iter =  142700
+0.0289694927633
+training @ iter =  142800
+0.000639513425995
+training @ iter =  142900
+0.000277222192381
+epoch 286, minibatch 500/500, test error 14.960000 %
+training @ iter =  143000
+0.0127218719572
+training @ iter =  143100
+0.00930390879512
+training @ iter =  143200
+0.00611213082448
+training @ iter =  143300
+0.00282155862078
+training @ iter =  143400
+0.000998225528747
+epoch 287, minibatch 500/500, test error 14.980000 %
+training @ iter =  143500
+0.00331499637105
+training @ iter =  143600
+0.0021217467729
+training @ iter =  143700
+0.00145744066685
+training @ iter =  143800
+0.00408005341887
+training @ iter =  143900
+0.00122549803928
+epoch 288, minibatch 500/500, test error 14.950000 %
+training @ iter =  144000
+0.00350413052365
+training @ iter =  144100
+0.00575322052464
+training @ iter =  144200
+0.00451637431979
+training @ iter =  144300
+0.00150986528024
+training @ iter =  144400
+0.00480142701417

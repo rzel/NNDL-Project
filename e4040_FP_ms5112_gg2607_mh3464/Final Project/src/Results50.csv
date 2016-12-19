@@ -1,0 +1,73 @@
+,Running time,XEntropy,Test performance,Best Validation score,Max epochs,N epochs,Activation function - hidden,Activation function - highway,L2_reg parameter,L1_reg parameter,Batch size,Iterations,Hidden neurons per layer,Hidden Layers,Highway Layers,Learning rate,lr_decay,momentum,Patience,b_T
+60,6.77814845244,0.000683122191476,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.98,0.5,10000,-4
+73,11.9358565807,0.000788348293485,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.97,0.85,10000,-4
+79,11.9786543171,0.00133108508767,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.99,0.95,10000,-4
+92,8.12739179929,0.00147780845093,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.97,0.85,10000,-4
+90,7.82765951951,0.00150941551675,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.97,0.95,10000,-4
+94,8.10443565051,0.00153616897011,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.97,0.95,10000,-4
+75,11.8427839637,0.00154811869038,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.99,0.85,10000,-2
+67,13.3544188817,0.0015934340324,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.99,0.85,10000,-2
+51,6.80370481809,0.00166215179843,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.99,0.8,10000,-2
+88,7.97219048341,0.00192865266453,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.97,0.85,10000,-2
+93,8.13940526644,0.0023691388921,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.85,10000,-2
+95,8.14456886848,0.00237916038663,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.95,10000,-2
+89,8.08889205058,0.00256519876432,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.85,10000,-4
+91,7.95456913312,0.00262110872834,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.95,10000,-4
+86,8.02695560058,0.00374812033551,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.97,0.95,10000,-4
+82,8.4076537172,0.00418112540129,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.97,0.95,10000,-4
+100,8.04238863389,0.00421262645372,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.97,0.85,10000,-4
+102,7.6778783838,0.00427860747534,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.97,0.95,10000,-4
+84,8.45777813594,0.00429504213401,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.97,0.85,10000,-2
+39,6.7767249306,0.00442598369718,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.8,10000,-2
+48,6.79726840258,0.00699005074752,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.98,0.5,10000,-2
+41,6.76413969994,0.00753647643595,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.9,10000,-2
+103,8.14137781858,0.00799327752437,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.99,0.95,10000,-2
+96,8.13670730193,0.00814429528289,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.97,0.85,10000,-2
+101,7.96471100251,0.00823619015818,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.99,0.85,10000,-4
+85,8.1331960996,0.00847693389095,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.99,0.85,10000,-4
+87,8.38696591854,0.0115534912993,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.99,0.95,10000,-4
+98,8.08259643316,0.0151281307298,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.97,0.95,10000,-4
+83,8.45949013631,0.0165561727064,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.99,0.95,10000,-4
+61,6.77723888159,0.0189551574599,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.99,0.5,10000,-4
+40,6.7514149189,0.0207052384093,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.98,0.9,10000,-2
+52,6.80520886978,0.0231124155314,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.98,0.9,10000,-2
+71,13.4228429159,0.0251977655475,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.99,0.95,10000,-2
+65,13.1522548676,0.0259943333734,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.97,0.85,10000,-2
+53,6.77861785094,0.0274630429624,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.99,0.9,10000,-2
+64,13.0128557483,0.0316836137741,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.98,0.9,10000,-2
+81,8.4473584493,0.0374242559776,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.99,0.85,10000,-4
+69,13.3723188003,0.0389508445235,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.97,0.95,10000,-4
+5,7.04944368601,0.0393775008515,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,<function relu at 0x7f413b20fa28>,0,0,20,1,50,1,49,0.1,0.99,0.9,10000,-4
+36,6.80676078399,0.0395973158493,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.98,0.5,10000,-4
+97,8.16108181477,0.0406102056922,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.99,0.85,10000,-4
+62,6.7264774998,0.0417187638447,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.98,0.8,10000,-4
+2,7.01390758355,0.0442546021107,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,<function relu at 0x7f413b20fa28>,0,0,20,1,50,1,49,0.1,0.98,0.8,10000,-2
+37,6.78703939915,0.0475636777198,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.5,10000,-2
+80,8.4711255153,0.0538488679645,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.05,0.97,0.85,10000,-2
+38,6.79713671605,0.0617367201671,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.98,0.8,10000,-2
+49,6.84484713475,0.0633305125341,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.99,0.5,10000,-2
+1,7.16157368422,0.0671542066841,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,<function relu at 0x7f413b20fa28>,0,0,20,1,50,1,49,0.1,0.99,0.5,10000,-2
+63,6.80184384982,0.0699687821732,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.99,0.8,10000,-4
+99,7.88847250144,0.0798684073873,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.05,0.99,0.95,10000,-4
+77,13.4173233827,0.109750282947,0.0,inf,50,50,<function relu at 0x7fdf8e23da28>,<function relu at 0x7fdf8e23da28>,0,0,20,1,50,1,49,0.1,0.97,0.95,10000,-4
+50,6.81901104848,0.159124171634,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.98,0.8,10000,-4
+66,13.1923679153,0.246230110714,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.99,0.9,10000,-4
+70,13.2517458677,0.475227881834,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.99,0.5,10000,-4
+72,11.9141343832,0.516531912863,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.98,0.8,10000,-2
+78,11.9764764826,0.575069530487,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.99,0.9,10000,-2
+54,6.75259173314,0.722311923623,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.98,0.5,10000,-2
+56,6.69659958283,0.814586718917,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.98,0.8,10000,-2
+58,6.76557066838,0.83359672153,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.98,0.9,10000,-2
+68,13.2112164855,0.968190301895,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.98,0.5,10000,-2
+74,11.7802381833,1.12129560208,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.99,0.8,10000,-4
+59,6.77114029725,1.16443190622,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.99,0.9,10000,-4
+76,13.3198747516,1.17722303176,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.3,0.98,0.9,10000,-4
+57,6.73323733012,1.18977530932,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.99,0.8,10000,-4
+55,6.73757514954,1.26587509131,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.2,0.99,0.5,10000,-4
+47,6.76163909833,2.30017939472,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.9,10000,-4
+46,6.76097015142,2.30020027447,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.98,0.9,10000,-2
+45,6.75877606471,2.3002686882,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.8,10000,-2
+44,6.78288721641,2.30030934048,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.98,0.8,10000,-2
+43,6.77690564791,2.30039621162,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.99,0.5,10000,-2
+42,6.78465363185,2.30046913338,0.0,inf,50,50,<function relu at 0x7f413b20fa28>,"Elemwise{tanh,no_inplace}",0,0,20,1,50,1,49,0.1,0.98,0.5,10000,-2
+0,4.96628036499,,0.0,inf,50,35,<function relu at 0x7f413b20fa28>,<function relu at 0x7f413b20fa28>,0,0,20,1,50,1,49,0.1,0.98,0.5,10000,-2
